@@ -21,7 +21,7 @@
 
         <div ng-if="checkType(element.type, 1)">
             <div class="w-600 block-center">
-                <div hallo-editor class="hidden-input p-10-10" ng-model="element.body"></div>
+                <div hallo-editor class="hidden-input p-10-10" ng-model="element.body" ng-bind-html="element.body"></div>
             </div>
         </div>
 

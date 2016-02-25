@@ -62,4 +62,4 @@ kordeCms.run(function ($rootScope, $location, $route, AuthService) {
     });
 });
 
-kordeCms.value('apiUrl', '/api');
+kordeCms.value('apiUrl', '/cms');

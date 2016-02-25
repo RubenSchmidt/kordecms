@@ -3,12 +3,11 @@
  */
 var kordeCms = angular.module("kordeCms", ['ngCookies', 'ngRoute', 'ngSanitize', 'ngFileUpload']);
 
-kordeCms.config(['$routeProvider', '$location', function ($routeProvider, $location) {
-    console.log($location.absUrl());
+kordeCms.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/', {
             controller: 'DashboardCtrl',
-            templateUrl: '../../static/partials/dashboard.html'
+            templateUrl: '/static/partials/dashboard.html'
         })
         .when('/articles/new/', {
             controller: 'EditArticleCtrl',

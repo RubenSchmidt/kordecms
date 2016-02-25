@@ -17,7 +17,7 @@ kordeCms.directive('halloEditor', function () {
                     'hallojustify': {},
                     'hallolists': {},
                     'halloreundo': {},
-                    'halloblacklist': ['style']
+                    'halloblacklist': ['br']
                 },
                 toolbar: 'halloToolbarFixed'
             });

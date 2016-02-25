@@ -19,3 +19,17 @@ class ArticleAuthorCanEditPermission(SafeMethodsOnlyPermission):
         else:
             can_edit = request.user == obj.author
         return can_edit or super(ArticleAuthorCanEditPermission, self).has_object_permission(request, view, obj)
+
+
+class IsAdminOrReadOnly(permissions.BasePermission):
+    """
+    Custom permission to only allow owners of an object to edit it.
+    """
+    def has_object_permission(self, request, view, obj=None):
+        # Read permissions are allowed to any request,
+        # so we'll always allow GET, HEAD or OPTIONS requests.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # Write permissions are only allowed to the owner of object.
+        return request.user.is_staff

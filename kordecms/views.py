@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from kordecms.models import Page, Article, ArticleComment, PageElement, ArticleElement
-from kordecms.permissions import ArticleAuthorCanEditPermission, SafeMethodsOnlyPermission
+from kordecms.permissions import ArticleAuthorCanEditPermission, IsAdminOrReadOnly
 from kordecms.serializers import ArticleSerializer, ArticleCommentSerializer, UserSerializer, PageSerializer, \
     PageElementSerializer, ArticleElementSerializer
 from django.utils.translation import ugettext_lazy as _
@@ -44,7 +44,7 @@ class PageList(generics.ListCreateAPIView):
     queryset = Page.objects.all()
     serializer_class = PageSerializer
     permission_classes = [
-        permissions.AllowAny
+        IsAdminOrReadOnly
     ]
 
 
@@ -54,7 +54,7 @@ class PageDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PageSerializer
     lookup_field = 'slug'
     permission_classes = [
-        permissions.IsAdminUser
+        IsAdminOrReadOnly
     ]
 
 

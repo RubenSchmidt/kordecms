@@ -12,7 +12,7 @@ class PageElementSerializer(serializers.ModelSerializer):
 
 
 class PageSerializer(serializers.ModelSerializer):
-    elements = PageElementSerializer(many=True)
+    elements = serializers.SerializerMethodField('get_elements')
     thumbnail_url = serializers.ReadOnlyField()
 
     class Meta:
@@ -23,12 +23,15 @@ class PageSerializer(serializers.ModelSerializer):
         Pops the element array and saves all of the elements individually.
         """
         elements_data = validated_data.pop('elements')
-        print(elements_data)
         page = Page.objects.create(**validated_data)
         for element_data in elements_data:
-            print(element_data)
             PageElement.objects.create(page=page, **element_data)
         return page
+
+    def get_elements(self, obj):
+        qset = PageElement.objects.filter(page=obj).order_by('row', 'col')
+        ser = PageElementSerializer(qset, many=True)
+        return ser.data
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -8,7 +8,7 @@ kordeCms.config(function ($routeProvider, $location) {
     $routeProvider
         .when('/', {
             controller: 'DashboardCtrl',
-            templateUrl: '../static/partials/dashboard.html'
+            templateUrl: '../../static/partials/dashboard.html'
         })
         .when('/articles/new/', {
             controller: 'EditArticleCtrl',

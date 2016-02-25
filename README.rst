@@ -9,6 +9,11 @@ Detailed documentation is in the "docs" directory.
 Quick start
 -----------
 
+Installation
+
+pip install git+git://github.com/RubenSchmidt/kordecms.git
+
+
 1. Add "kordecms" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [

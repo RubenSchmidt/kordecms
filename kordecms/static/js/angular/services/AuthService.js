@@ -2,8 +2,8 @@
  * Created by rubenschmidt on 24.02.2016.
  */
 kordeCms.factory('AuthService',
-    ['$q', '$timeout', '$http', '$cookies',
-        function ($q, $timeout, $http, $cookies) {
+    ['$q', '$timeout', '$http', '$cookies','apiUrl',
+        function ($q, $timeout, $http, $cookies, apiUrl) {
 
             // create user variable
             var user = null;
@@ -31,7 +31,7 @@ kordeCms.factory('AuthService',
 
                 if ($cookies.get('token')) {
                     $http.defaults.headers.common.Authorization = 'JWT ' + $cookies.get('token');
-                    $http.post('/api/api-token-verify/', {'token': $cookies.get('token')}).then(function (response) {
+                    $http.post(apiUrl + '/api-token-verify/', {'token': $cookies.get('token')}).then(function (response) {
                         //Handle success
                         //Usertoken went through and the user is authenticated
                         user = true;
@@ -52,7 +52,7 @@ kordeCms.factory('AuthService',
                 var deferred = $q.defer();
 
                 // send a post request to the server
-                $http.post('/api/api-token-auth/', {username: username, password: password})
+                $http.post(apiUrl + '/api-token-auth/', {username: username, password: password})
 
                     .then(function (response) {
                         // handle success

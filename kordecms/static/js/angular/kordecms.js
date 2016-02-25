@@ -3,7 +3,7 @@
  */
 var kordeCms = angular.module("kordeCms", ['ngCookies', 'ngRoute', 'ngSanitize', 'ngFileUpload']);
 
-kordeCms.config(function ($routeProvider, $location) {
+kordeCms.config(['$routeProvider', '$location', function ($routeProvider, $location) {
     console.log($location.absUrl());
     $routeProvider
         .when('/', {
@@ -51,7 +51,7 @@ kordeCms.config(function ($routeProvider, $location) {
             templateUrl: '/static/partials/new-user.html'
         })
         .otherwise('/login')
-});
+}]);
 kordeCms.run(function ($rootScope, $location, $route, AuthService) {
     //Get the auth status of the user, if it goes trough we have a valid token.
     AuthService.getAuthStatus().then(function () {

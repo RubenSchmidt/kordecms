@@ -44,7 +44,7 @@ class PageList(generics.ListCreateAPIView):
     queryset = Page.objects.all()
     serializer_class = PageSerializer
     permission_classes = [
-        permissions.IsAdminUser
+        permissions.AllowAny
     ]
 
 

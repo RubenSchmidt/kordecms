@@ -16,12 +16,7 @@ kordeCms.directive('halloEditor', function () {
                     'halloheadings': [1, 2, 3],
                     'hallojustify': {},
                     'hallolists': {},
-                    'halloreundo': {},
-                    'hallocleanhtml': {
-                        format: false,
-                        allowedTags: ['p', 'em', 'strong', 'br', 'div', 'ol', 'ul', 'li', 'a'],
-                        allowedAttributes: []
-                    }
+                    'halloreundo': {}
                 },
                 toolbar: 'halloToolbarFixed'
             });

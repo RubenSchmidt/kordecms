@@ -11,6 +11,12 @@ setup(
     name='django-kordecms',
     version='0.1',
     packages=find_packages(),
+    install_requires=[
+          'django-taggit',
+          'djangorestframework',
+          'djangorestframework-jwt',
+          'Pillow',
+      ],
     include_package_data=True,
     license='',  # example license
     description='CMS system built on django rest framework',

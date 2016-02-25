@@ -12,7 +12,7 @@ class PageElementSerializer(serializers.ModelSerializer):
 
 
 class PageSerializer(serializers.ModelSerializer):
-    elements = serializers.SerializerMethodField('get_elements')
+    elements = serializers.SerializerMethodField()
     thumbnail_url = serializers.ReadOnlyField()
 
     class Meta:

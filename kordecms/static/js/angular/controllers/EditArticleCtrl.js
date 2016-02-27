@@ -7,7 +7,6 @@ kordeCms.controller('EditArticleCtrl',
         $scope.newTagInput = {};
         $scope.article = {};
         //Init empty elements list.
-        $scope.article.elements = [];
         // Initialize new element with default values
         initNewElement();
         var isNew = true;
@@ -114,6 +113,8 @@ kordeCms.controller('EditArticleCtrl',
         };
 
         var createArticle = function () {
+            //Set the elements variable
+            $scope.article.elements = [];
             ArticleFactory.create($scope.article, $scope.article.thumbnail_image_src).then(function (response) {
                 //Success, redirect to the article page
                 $location.path('/articles/' + response.data.id)

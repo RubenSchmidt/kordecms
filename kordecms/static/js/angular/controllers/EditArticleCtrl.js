@@ -23,12 +23,12 @@ kordeCms.controller('EditArticleCtrl',
         if(!$routeParams.articleId){
             //Create new article object
             isNew = true;
-            console.log("New article mode");
         } else {
             //Get existing article
             ArticleFactory.get($routeParams.articleId).then(function (response) {
                 //Success
                 $scope.article = response.data;
+                $scope.article.tags = $scope.article.tag_string.split(',');
                 isNew = false;
                 $scope.newElement.article = $scope.article.id;
         }, function (response) {

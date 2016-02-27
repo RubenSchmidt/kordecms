@@ -101,11 +101,10 @@ kordeCms.controller('EditArticleCtrl',
                 ArticleFactory.update($scope.article, file).then(function (response) {
                     //Success
                     SweetAlert.swal({title: "Lagret", type: "success", showConfirmButton: false, timer: 1000});
+                    $location.path('/articles')
                 }, function (response) {
                     console.log(response);
-                    SweetAlert.swal({
-                        title: "Noe gikk galt!"
-                    })
+                    SweetAlert.swal({title: "Noe gikk galt!", type: "error", showConfirmButton: false, timer: 1000});
                 });
             }
         };
@@ -113,12 +112,12 @@ kordeCms.controller('EditArticleCtrl',
         var createArticle = function () {
             ArticleFactory.create($scope.article).then(function (response) {
                 //Success, redirect to the article page
-                console.log(response);
                 $location.path('/articles' + response.data.id)
             }, function (response) {
                 //error
                 console.log(response);
                 $scope.errors = response.data;
+                SweetAlert.swal({title: "Noe gikk galt!", type: "error", showConfirmButton: false, timer: 1000});
             });
         };
 

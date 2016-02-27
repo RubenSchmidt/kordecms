@@ -108,7 +108,16 @@ class ArticleMixin(object):
 
 
 class ArticleList(ArticleMixin, generics.ListCreateAPIView):
-    pass
+
+    def get_queryset(self):
+        """
+        Optionally limit the number of articles returned.
+        """
+        queryset = self.get_queryset()
+        limit = self.request.query_params.get('limit', None)
+        if limit is not None:
+            return queryset[:limit]
+        return queryset
 
 
 class ArticleDetail(ArticleMixin, generics.RetrieveUpdateDestroyAPIView):

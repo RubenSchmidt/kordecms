@@ -1,17 +1,28 @@
 <div class="has-navbar has-sidebar">
     <md-content>
-        <md-list>
-            <md-list-item class="md-3-line md-long-text" ng-repeat="article in articles"
-                          ng-click="go(article.id)">
-                <img ng-src="{{ article.thumbnail_image_url }}" class="md-avatar" alt="Artikkel bilde"/>
-                <div class="md-list-item-text">
-                    <h3>{{ article.title }} </h3>
-                    <p>
-                        {{ article.body_text }}
-                    </p>
-                </div>
-            </md-list-item>
-        </md-list>
+        <div layout="row">
+            <h1>Artikler</h1>
+        </div>
+        <div layout="row">
+            <md-button class="md-fab" aria-label="Comment">
+                <md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>
+            </md-button>
+        </div>
+        <div layout="row">
+            <md-list>
+                <md-list-item class="md-3-line md-long-text" ng-repeat="article in articles"
+                              ng-click="go(article.id)">
+                    <img ng-src="{{ article.thumbnail_image_url }}" class="md-avatar" alt="Artikkel bilde"/>
+                    <div class="md-list-item-text">
+                        <h3>{{ article.title }} </h3>
+                        <p>
+                            {{ article.body_text }}
+                        </p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+
     </md-content>
     <div id="page-wrapper">
         <div class="row">

@@ -73,7 +73,7 @@ class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
     # Creates a nested relationship with all its elements, the related name is set in ArticleElement
     elements = ArticleElementSerializer(many=True, read_only=True)
     thumbnail_image_url = serializers.ReadOnlyField()
-    tags = TagListSerializerField(required=False)
+    tags = TagListSerializerField()
 
     class Meta:
         model = Article

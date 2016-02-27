@@ -113,7 +113,7 @@ class ArticleList(ArticleMixin, generics.ListCreateAPIView):
         """
         Optionally limit the number of articles returned.
         """
-        queryset = self.queryset
+        queryset = Article.objects.all().order_by('-created_at')
         limit = self.request.query_params.get('limit', None)
         if limit is not None:
             return queryset[:limit]

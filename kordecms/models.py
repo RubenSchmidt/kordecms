@@ -7,9 +7,11 @@ from taggit.managers import TaggableManager
 # Enum used for page and article elements
 TYPE_IMAGE = 0
 TYPE_TEXT = 1
+TYPE_EMBED = 2
 ELEMENT_TYPE_CHOICES = (
     (TYPE_IMAGE, _('Image element')),
-    (TYPE_TEXT, _('Text element'))
+    (TYPE_TEXT, _('Text element')),
+    (TYPE_EMBED, _('Embed element'))
 )
 
 # Enum used with article elements.
@@ -210,7 +212,7 @@ class Article(KordeEditableModel):
 class ArticleElement(models.Model):
     """
     Article element.
-    Can either be image or text.
+    Can either be image text or embed.
     Can either be half or full.
     Both text and image can be null, but one of them should be set accordingly.
     """
@@ -239,6 +241,12 @@ class ArticleElement(models.Model):
         verbose_name=_('article paragraph'),
         blank=True,
         null=True
+    )
+
+    embed_code = models.CharField(
+        max_length=256,
+        blank=True, null=True,
+        verbose_name=_('Embed code')
     )
 
     image_src = models.ImageField(

@@ -25,10 +25,13 @@
     <link href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'stylesheets/css/sb-admin-2.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
 </head>
 <body ng-app="kordeCms">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-static-top turqoise navbar-fixed-top" role="navigation" style="margin-bottom: 0"
+<nav class="navbar navbar-default navbar-static-top turqoise navbar-fixed-top" role="navigation"
+     style="margin-bottom: 0"
      ng-controller="NavbarCtrl" ng-show="showNavbar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -91,22 +94,32 @@
 
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
 <script src="{% static 'bower_components/rangy/rangy-core.min.js' %}"></script>
-
-<script src="{% static 'bower_components/angular/angular.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 <script src="{% static 'bower_components/ng-file-upload-shim/ng-file-upload-all.min.js' %}"></script>
 <script src="{% static 'bower_components/sweetalert2/dist/sweetalert2.min.js' %}"></script>
 
-<script src="{% static 'js/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
 
 <script src="{% static 'js/vendor/hallo.js' %}"></script>
-
-
+<script src="{% static 'js/vendor/angular-youtube-embed.min.js' %}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-messages.min.js"></script>
 <script src="{% static 'bower_components/angular-resource/angular-resource.min.js' %}"></script>
 <script src="{% static 'bower_components/angular-route/angular-route.min.js' %}"></script>
 <script src="{% static 'bower_components/angular-cookies/angular-cookies.min.js' %}"></script>
 <script src="{% static 'bower_components/angular-sanitize/angular-sanitize.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.js"></script>
+
+<!-- OWN APP  -->
 <script src="{% static 'js/angular/kordecms.js' %}"></script>
+
+<!-- CONTROLLERS-->
 <script src="{% static 'js/angular/controllers/editPageCtrl.js' %}"></script>
 <script src="{% static 'js/angular/controllers/pagesCtrl.js' %}"></script>
 <script src="{% static 'js/angular/controllers/EditArticleCtrl.js' %}"></script>
@@ -119,10 +132,13 @@
 <script src="{% static 'js/angular/controllers/PageElementCtrl.js' %}"></script>
 <script src="{% static 'js/angular/controllers/UsersCtrl.js' %}"></script>
 
+<!-- DIRECTIVES  -->
 <script src="{% static 'js/angular/directives/halloEditor.js' %}"></script>
 <script src="{% static 'js/angular/directives/kordeEditable.js' %}"></script>
 <script src="{% static 'js/angular/directives/onPressEnter.js' %}"></script>
 
+
+<!-- SERVICES  -->
 <script src="{% static 'js/angular/services/ArticleFactory.js' %}"></script>
 <script src="{% static 'js/angular/services/AuthService.js' %}"></script>
 <script src="{% static 'js/angular/services/GlobalEditor.js' %}"></script>

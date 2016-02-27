@@ -1,18 +1,30 @@
 <div class="has-navbar has-sidebar">
-    <div>
-        <md-content layout-padding>
-            <div layout-gt-sm="row">
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label>First name</label>
-                    <input ng-model="user.firstName">
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label>Last Name</label>
-                    <input ng-model="theMax">
-                </md-input-container>
-            </div>
-        </md-content>
-    </div>
+    <md-content layout-padding>
+        <div>
+            <form name="userForm">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Fornavn</label>
+                        <input ng-model="user.first_name">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Etternavn</label>
+                        <input ng-model="user.last_name">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Brukernavn</label>
+                        <input ng-model="user.username">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Epost</label>
+                        <input ng-model="user.email">
+                    </md-input-container>
+                </div>
+            </form>
+        </div>
+    </md-content>
 
     <div id="page-wrapper">
         <div class="row">

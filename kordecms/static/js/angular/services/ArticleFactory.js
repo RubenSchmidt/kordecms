@@ -21,8 +21,18 @@ kordeCms.factory('ArticleFactory',
             return $http.get(endpoint)
         }
 
-        function create(article) {
-            return $http.post(endpoint, article)
+        function create(article, file) {
+            //Check for file existance
+            if(angular.isUndefined(file)){
+                return $http.post(endpoint, article)
+            }else {
+                return Upload.upload({
+                    url: endpoint,
+                    method: 'POST',
+                    data: article,
+                    file: file
+                });
+            }
         }
 
         function update(article) {

@@ -67,15 +67,10 @@ class PageElementDetail(generics.RetrieveUpdateDestroyAPIView):
     ]
 
     def perform_update(self, serializer):
-        obj = serializer.validated_data
         # Type is image
-        if obj['type'] == 0:
-            # New image file is uploaded
-            if self.request.FILES.get('file'):
-                serializer.save(image_src=self.request.FILES.get('file'))
-                return
-        # save the normal way
-        serializer.save()
+        file = self.request.FILES.get('file')
+        # If a new image is added, save it. Will be none if not.
+        serializer.save(image_src=file)
 
 
 class PageElementList(generics.ListAPIView):
@@ -92,39 +87,6 @@ class PageElementList(generics.ListAPIView):
         return queryset.filter(page__slug=self.kwargs.get('slug'))
 
 
-@api_view(['GET'])
-def get_page_elements_sorted(request, slug):
-    """
-    Return the page elements in a list of rows, with the columns inside each row.
-    :param slug: Page name slug
-    :param request:
-    """
-    queryset = PageElement.objects.filter(page__slug=slug).order_by('row', 'col')
-    if not queryset:
-        return Response(_('Could not find the page elements'), status=status.HTTP_404_NOT_FOUND)
-
-    rows = []
-    temp = []
-    check = 0
-    index = 0
-    for r in queryset:
-        serialized = PageElementSerializer(r).data
-        index = r.row - 1
-        if index == check:
-            temp.append(serialized)
-
-        else:
-            rows.append(temp)
-            temp = [serialized]
-            check = index
-
-    # Only one row, therefore temp is not added in the for loop
-    if check == index:
-        rows.append(temp)
-
-    return Response(data=rows, status=status.HTTP_200_OK)
-
-
 class ArticleMixin(object):
     model = Article
     queryset = Article.objects.all().order_by('-created_at')
@@ -135,8 +97,14 @@ class ArticleMixin(object):
     ]
 
     def perform_create(self, serializer):
-        """Force author to the current user on save"""
-        serializer.save(author=self.request.user)
+        # Try to get the file, return None if not found.
+        file = self.request.FILES.get('file')
+        serializer.save(author=self.request.user, thumbnail_image_src=file)
+
+    def perform_update(self, serializer):
+        # Try to get the file, return None if not found.
+        file = self.request.FILES.get('file')
+        serializer.save(thumbnail_image_src=file)
 
 
 class ArticleList(ArticleMixin, generics.ListCreateAPIView):

@@ -56,7 +56,6 @@ kordeCms.controller('EditArticleCtrl',
                     $scope.errors = response.data;
                 });
             }else {
-                console.log("ohter");
                 //We are adding a new image element
                 if(angular.isUndefined($scope.newElement.file)){
                     SweetAlert.swal({
@@ -78,11 +77,16 @@ kordeCms.controller('EditArticleCtrl',
             }
         };
 
-
+        //Save the file from the image upload
+        $scope.setNewThumbnailImage = function(file){
+            $scope.article.thumbnail_image = file;
+        };
+        //Save the file from the image upload for a new element
         $scope.setNewElementImage = function(file){
             $scope.newElement.file = file;
             console.log(file);
         };
+
 
         $scope.setNewElementType = function(type, width){
             //Type is either 0 or 1, if width is set, we are setting the width_type
@@ -93,12 +97,12 @@ kordeCms.controller('EditArticleCtrl',
             }
         };
 
-        $scope.saveArticle = function (file) {
+        $scope.saveArticle = function () {
             if (isNew) {
                 createArticle();
             } else {
                 console.log($scope.article);
-                ArticleFactory.update($scope.article, file).then(function (response) {
+                ArticleFactory.update($scope.article, $scope.article.thumbnail_image).then(function (response) {
                     //Success
                     SweetAlert.swal({title: "Lagret", type: "success", showConfirmButton: false, timer: 1000});
                     $location.path('/articles')
@@ -110,7 +114,7 @@ kordeCms.controller('EditArticleCtrl',
         };
 
         var createArticle = function () {
-            ArticleFactory.create($scope.article).then(function (response) {
+            ArticleFactory.create($scope.article, $scope.article.thumbnail_image).then(function (response) {
                 //Success, redirect to the article page
                 $location.path('/articles' + response.data.id)
             }, function (response) {

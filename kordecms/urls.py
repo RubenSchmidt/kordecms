@@ -14,7 +14,6 @@ urlpatterns = [
 
     url(r'^pages$', views.PageList.as_view(), name='page-list'),
     url(r'^pages/(?P<slug>[-_\w]+)$', views.PageDetail.as_view(), name='page-detail'),
-    url(r'^pages/(?P<slug>[-_\w]+)/elements$', views.get_page_elements_sorted, name='page-element-sorted'),
     url(r'^pageelements/(?P<pk>\d+)$', views.PageElementDetail.as_view(), name='page-element-detail'),
 
 

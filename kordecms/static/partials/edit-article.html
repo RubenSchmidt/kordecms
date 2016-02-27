@@ -72,8 +72,8 @@
         <h4 class="modal-title t-center">Bildeopplasting</h4>
       </div>
       <div class="modal-body">
-        <div class="image-drop-area" ngf-drop="upload($file)" ngf-drag-over-class="'dragover'" ng-show="!thumbnailUploaded()">
-            <div class="upload-button" ngf-select ng-model="element.image_file" name="newImage"
+        <div class="image-drop-area" ngf-drop="setNewThumbnailImage($file)" ngf-drag-over-class="'dragover'" ng-show="!thumbnailUploaded()">
+            <div class="upload-button" ngf-select="setNewThumbnailImage($file)" name="newImage"
                  ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100">
                 <p>Last opp bilde</p>
             </div>

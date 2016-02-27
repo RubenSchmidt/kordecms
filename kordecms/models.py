@@ -192,6 +192,7 @@ class Article(KordeEditableModel):
             tag_list = self.tag_string.split(',')
             for tag_name in tag_list:
                 self.tags.add(tag_name.strip())
+        self.author_name = self.author.get_full_name()
 
         super(Article, self).save(*args, **kwargs)  # Call the "real" save() method.
 

@@ -69,7 +69,7 @@ class ArticleElementSerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     # Creates a nested relationship with all its elements, the related name is set in ArticleElement
-    elements = ArticleElementSerializer(many=True)
+    elements = ArticleElementSerializer(many=True, read_only=True)
     thumbnail_image_url = serializers.ReadOnlyField()
 
     class Meta:
@@ -77,55 +77,6 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'title', 'author_name', 'body_text', 'thumbnail_image_url', 'created_at', 'tag_string', 'author',
             'elements')
-
-    def create(self, validated_data):
-        """
-        Pops the element array and saves all of the elements individually.
-        """
-        # Get the request object
-        request = self.context.get("request")
-
-        elements_data = validated_data.pop('elements')
-        article = Article.objects.create(**validated_data)
-        for element_data in elements_data:
-            ArticleElement.objects.create(article=article, **element_data)
-        return article
-
-    def update(self, instance, validated_data):
-        # Update the article instance
-        instance.title = validated_data.get('title', instance.title)
-        instance.body_text = validated_data.get('body_text', instance.body_text)
-        instance.tag_string = validated_data.get('tag_string', instance.tag_string)
-        instance.thumbnail_image_src = validated_data.get('thumbnail_image_src', instance.thumbnail_image_src)
-        instance.save()
-
-        # Maps for id->instance id->data item.
-        all_elements = instance.elements.all()
-        element_mapping = {element.id: element for element in all_elements}
-        # List all the data from elements.
-        data_list = [item for item in validated_data['elements']]
-        # List all the id's
-        data_id_list = [item.get('id') for item in validated_data['elements']]
-
-        # Update or create new elements
-        for data in data_list:
-            element = element_mapping.get(data.get('id'), None)
-            if element is None:
-                new = ArticleElement(
-                    article=instance,
-                    type=data.get('type'),
-                    width_type=data.get('width_type'),
-                    text=data.get('text'))
-                new.save()
-            else:
-                ArticleElement.objects.update_or_create(id=data.get('id'), defaults=data)
-
-        # Delete any elements not included in the request
-        # Check for elements that are deleted
-        for element in all_elements:
-            if element.id not in data_id_list:
-                element.delete()
-        return instance
 
 
 class ArticleCommentSerializer(serializers.ModelSerializer):

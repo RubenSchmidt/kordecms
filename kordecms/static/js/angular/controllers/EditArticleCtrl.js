@@ -6,6 +6,8 @@ kordeCms.controller('EditArticleCtrl',
         $scope.editorMode = true;
         $scope.newTagInput = {};
         $scope.article = {};
+        //Init empty elements list.
+        $scope.article.elements = [];
         // Initialize new element with default values
         initNewElement();
         var isNew = true;

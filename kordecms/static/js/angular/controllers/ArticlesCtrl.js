@@ -2,7 +2,7 @@
  * Created by rubenschmidt on 24.02.2016.
  */
 kordeCms.controller('ArticlesCtrl',
-    ['$scope', 'PageFactory', 'ArticleFactory', 'UserFactory', 'GlobalEditorService', function ($scope, PageFactory, ArticleFactory, UserFactory, GlobalEditorService) {
+    ['$scope', '$location' ,'PageFactory', 'ArticleFactory', function ($scope, $location , PageFactory, ArticleFactory) {
         $scope.editorMode = true;
 
         $scope.publishedText = function (article) {
@@ -28,4 +28,8 @@ kordeCms.controller('ArticlesCtrl',
         }, function (response) {
             //Error
         });
+
+        $scope.go = function (path) {
+            $location.path(path);
+        };
     }]);

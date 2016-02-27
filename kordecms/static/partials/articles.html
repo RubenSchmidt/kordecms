@@ -1,8 +1,22 @@
-<div class="has-navbar">
+<div class="has-navbar has-sidebar">
+    <md-content>
+        <md-list>
+            <md-list-item class="md-3-line md-long-text" ng-repeat="article in articles"
+                          ng-click="go('/articles/'+{{ article.id }})">
+                <img ng-src="{{ article.thumbnail_image_url }}" class="md-avatar" alt="Artikkel bilde"/>
+                <div class="md-list-item-text">
+                    <h3>{{ article.title }} </h3>
+                    <p>
+                        {{ article.body_text }}
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-               <h1 class="page-header">Deres artikler</h1>
+                <h1 class="page-header">Deres artikler</h1>
                 <a href="#/articles/new"><i class="add-article fa fa-plus-circle fa-4x"></i></a>
             </div>
             <!-- /.col-lg-12 -->

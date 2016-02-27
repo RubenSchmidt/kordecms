@@ -109,7 +109,7 @@ class PageElement(KordeEditableModel):
     image_src = models.ImageField(
         verbose_name=_('Element image source'),
         blank=True, null=True,
-        upload_to='pageelements/%Y/%m/%d/')
+        upload_to='cms/pageelements/%Y/%m/%d/')
 
     description = models.TextField(
         blank=True,
@@ -175,7 +175,7 @@ class Article(KordeEditableModel):
 
     thumbnail_image_src = models.ImageField(
         verbose_name=_('article thumbnail image'),
-        upload_to='articleimages/%Y/%m/%d/',
+        upload_to='cms/articlethumbnails/%Y/%m/%d/',
         null=True,
         blank=True)
 
@@ -243,7 +243,7 @@ class ArticleElement(models.Model):
 
     image_src = models.ImageField(
         verbose_name=_('article image'),
-        upload_to='articleimages/%Y/%m/%d/',
+        upload_to='cms/articleimages/%Y/%m/%d/',
         null=True,
         blank=True)
 

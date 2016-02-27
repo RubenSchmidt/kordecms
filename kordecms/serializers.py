@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from kordecms.models import Page, Article, ArticleComment, PageElement, ArticleElement
 from django.contrib.auth.models import User
+from taggit_serializer.serializers import (TagListSerializerField,
+                                           TaggitSerializer)
 
 
 class PageElementSerializer(serializers.ModelSerializer):
@@ -67,10 +69,11 @@ class ArticleElementSerializer(serializers.ModelSerializer):
         fields = ('id', 'article', 'type', 'width_type', 'text', 'image_url')
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
     # Creates a nested relationship with all its elements, the related name is set in ArticleElement
     elements = ArticleElementSerializer(many=True, read_only=True)
     thumbnail_image_url = serializers.ReadOnlyField()
+    tags = TagListSerializerField()
 
     class Meta:
         model = Article

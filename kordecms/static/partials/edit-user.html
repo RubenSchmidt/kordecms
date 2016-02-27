@@ -1,4 +1,26 @@
 <div class="has-navbar has-sidebar">
+    <div layout="row">
+        <div flex="50">
+            <form ng-submit="updateUser()">
+                <div flex="50">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Fornavn</label>
+                        <input ng-model="user.first_name">
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Etternavn</label>
+                        <input ng-model="user.last_name">
+                    </md-input-container>
+                </div>
+            </form>
+
+        </div>
+        <div flex="50">
+
+        </div>
+    </div>
     <md-content layout-padding>
         <div>
             <form name="userForm">

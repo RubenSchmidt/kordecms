@@ -29,7 +29,7 @@ kordeCms.controller('ArticlesCtrl',
             //Error
         });
 
-        $scope.go = function (path) {
-            $location.path(path);
+        $scope.go = function (id) {
+            $location.path('/articles/' + id);
         };
     }]);

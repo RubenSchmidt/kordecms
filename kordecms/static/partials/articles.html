@@ -2,7 +2,7 @@
     <md-content>
         <md-list>
             <md-list-item class="md-3-line md-long-text" ng-repeat="article in articles"
-                          ng-click="go('/articles/{{ article.id }}')">
+                          ng-click="go(article.id)">
                 <img ng-src="{{ article.thumbnail_image_url }}" class="md-avatar" alt="Artikkel bilde"/>
                 <div class="md-list-item-text">
                     <h3>{{ article.title }} </h3>

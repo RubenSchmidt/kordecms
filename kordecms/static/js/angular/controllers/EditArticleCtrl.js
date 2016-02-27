@@ -116,7 +116,7 @@ kordeCms.controller('EditArticleCtrl',
         var createArticle = function () {
             ArticleFactory.create($scope.article, $scope.article.thumbnail_image).then(function (response) {
                 //Success, redirect to the article page
-                $location.path('/articles' + response.data.id)
+                $location.path('/articles/' + response.data.id)
             }, function (response) {
                 //error
                 console.log(response);

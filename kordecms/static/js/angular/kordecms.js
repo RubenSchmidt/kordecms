@@ -1,7 +1,7 @@
 /**
  * Created by rubenschmidt on 16.02.2016.
  */
-var kordeCms = angular.module("kordeCms", ['ngCookies', 'ngRoute', 'ngSanitize', 'ngFileUpload', 'youtube-embed', 'ngMaterial']);
+var kordeCms = angular.module("kordeCms", ['ngCookies', 'ngRoute', 'ngSanitize', 'ngFileUpload', 'youtube-embed', 'ngMaterial', 'ngMessages']);
 
 kordeCms.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

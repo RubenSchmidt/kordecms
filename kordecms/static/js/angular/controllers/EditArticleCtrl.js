@@ -28,7 +28,7 @@ kordeCms.controller('EditArticleCtrl',
             ArticleFactory.get($routeParams.articleId).then(function (response) {
                 //Success
                 $scope.article = response.data;
-                $scope.article.tags = $scope.article.tag_string.split(',');
+                $scope.article.tags = getTagList($scope.article);
                 isNew = false;
                 $scope.newElement.article = $scope.article.id;
         }, function (response) {
@@ -155,5 +155,14 @@ kordeCms.controller('EditArticleCtrl',
                 //error
                 console.log(response);
             });
+        }
+
+        //Pars the tag string as a list or return an empty one.
+        function getTagList(article) {
+            if(article.tag_string.length > 0){
+                return article.tag_string.split(',');
+            }else {
+                return [];
+            }
         }
     }]);

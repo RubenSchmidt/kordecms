@@ -99,16 +99,22 @@ class ArticleMixin(object):
     def perform_create(self, serializer):
         # Try to get the file, return None if not found.
         file = self.request.FILES.get('file')
-        serializer.save(author=self.request.user, thumbnail_image_src=file)
+        if file:
+            serializer.save(author=self.request.user, thumbnail_image_src=file)
+        else:
+            serializer.save(author=self.request.user)
 
     def perform_update(self, serializer):
         # Try to get the file, return None if not found.
         file = self.request.FILES.get('file')
-        serializer.save(thumbnail_image_src=file)
+        if file:
+            serializer.save(thumbnail_image_src=file)
+        else:
+            serializer.save()
+
 
 
 class ArticleList(ArticleMixin, generics.ListCreateAPIView):
-
     def get_queryset(self):
         """
         Optionally limit the number of articles returned.

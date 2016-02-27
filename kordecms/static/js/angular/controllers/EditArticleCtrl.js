@@ -79,7 +79,7 @@ kordeCms.controller('EditArticleCtrl',
 
         //Save the file from the image upload
         $scope.setNewThumbnailImage = function(file){
-            $scope.article.thumbnail_image = file;
+            $scope.article.thumbnail_image_src = file;
         };
         //Save the file from the image upload for a new element
         $scope.setNewElementImage = function(file){
@@ -102,7 +102,7 @@ kordeCms.controller('EditArticleCtrl',
                 createArticle();
             } else {
                 console.log($scope.article);
-                ArticleFactory.update($scope.article, $scope.article.thumbnail_image).then(function (response) {
+                ArticleFactory.update($scope.article, $scope.article.thumbnail_image_src).then(function (response) {
                     //Success
                     SweetAlert.swal({title: "Lagret", type: "success", showConfirmButton: false, timer: 1000});
                     $location.path('/articles')
@@ -114,7 +114,7 @@ kordeCms.controller('EditArticleCtrl',
         };
 
         var createArticle = function () {
-            ArticleFactory.create($scope.article, $scope.article.thumbnail_image).then(function (response) {
+            ArticleFactory.create($scope.article, $scope.article.thumbnail_image_src).then(function (response) {
                 //Success, redirect to the article page
                 $location.path('/articles/' + response.data.id)
             }, function (response) {

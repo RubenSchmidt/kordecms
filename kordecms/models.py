@@ -161,12 +161,6 @@ class Article(KordeEditableModel):
         blank=True
     )
 
-    tag_string = models.CharField(
-        verbose_name=_('Tag string'),
-        blank=True,
-        max_length=300
-    )
-
     is_published = models.BooleanField(
         default=False
     )
@@ -188,12 +182,7 @@ class Article(KordeEditableModel):
         return self.title
 
     def save(self, *args, **kwargs):
-        if len(self.tag_string) > 0:
-            tag_list = self.tag_string.split(',')
-            for tag_name in tag_list:
-                self.tags.add(tag_name.strip())
         self.author_name = self.author.get_full_name()
-
         super(Article, self).save(*args, **kwargs)  # Call the "real" save() method.
 
     @property

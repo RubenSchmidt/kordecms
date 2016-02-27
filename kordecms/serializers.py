@@ -78,7 +78,7 @@ class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = (
-            'id', 'title', 'author_name', 'body_text', 'thumbnail_image_url', 'created_at', 'tags', 'tag_string', 'author',
+            'id', 'title', 'author_name', 'body_text', 'thumbnail_image_url', 'created_at', 'tags', 'author',
             'elements')
 
 

@@ -124,35 +124,4 @@ kordeCms.controller('EditArticleCtrl',
                 SweetAlert.swal({title: "Noe gikk galt!", type: "error", showConfirmButton: false, timer: 1000});
             });
         };
-
-        //Vil vi lagre artikkelen hver gang en tag legges til eller slettes?
-        $scope.addTag = function (article) {
-            var list = article.tag_string.split(',');
-            var id = article.id.toString();
-            if (list.indexOf($scope.newTagInput[id]) < 0 && $scope.newTagInput[id]) {
-                article.tag_string += article.tag_string.length > 0 ? "," + $scope.newTagInput[id] : $scope.newTagInput[id];
-                $scope.newTagInput[id] = '';
-                ArticleFactory.update(article).then(function (response) {
-                    //Success
-                }, function (response) {
-                    //error
-                    console.log(response);
-                });
-            }
-        };
-
-        $scope.deleteTag = function (tag_name, article) {
-            var list = article.tag_string.split(',');
-            var index = list.indexOf(tag_name);
-            if (index > -1) {
-                list.splice(index, 1);
-            }
-            article.tag_string = list.join()
-            ArticleFactory.update(article).then(function (response) {
-                //Success
-            }, function (response) {
-                //error
-                console.log(response);
-            });
-        }
     }]);

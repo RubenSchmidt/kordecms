@@ -1,11 +1,17 @@
-<div class="has-navbar has-sidebar t-very-thin">
+<div class="has-navbar has-sidebar">
     <div>
-        <div>
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>First name</label>
-                <input ng-model="user.first_name">
-            </md-input-container>
-        </div>
+        <md-content layout-padding>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>First name</label>
+                    <input ng-model="user.firstName">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Last Name</label>
+                    <input ng-model="theMax">
+                </md-input-container>
+            </div>
+        </md-content>
     </div>
 
     <div id="page-wrapper">

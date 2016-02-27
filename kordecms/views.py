@@ -104,10 +104,9 @@ class ArticleMixin(object):
 
     def perform_update(self, serializer):
         # Try to get the file, return None if not found.
-        obj = serializer.save()
         file = self.request.FILES.get('file')
-        obj.thumbnail_image_src = file
-        obj.save()
+        print(file)
+        serializer.save(thumbnail_image_src=file)
 
 
 class ArticleList(ArticleMixin, generics.ListCreateAPIView):

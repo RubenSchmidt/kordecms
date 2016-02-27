@@ -96,6 +96,7 @@ class ArticleSerializer(serializers.ModelSerializer):
         instance.title = validated_data.get('title', instance.title)
         instance.body_text = validated_data.get('body_text', instance.body_text)
         instance.tag_string = validated_data.get('tag_string', instance.tag_string)
+        instance.thumbnail_image_src = validated_data.get('thumbnail_image_src', instance.thumbnail_image_src)
         instance.save()
 
         # Maps for id->instance id->data item.

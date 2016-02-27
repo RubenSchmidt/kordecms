@@ -109,23 +109,15 @@ kordeCms.controller('EditArticleCtrl',
         };
 
         var createArticle = function () {
-            if (!$scope.article.title) {
+            ArticleFactory.create($scope.article).then(function (response) {
+                //Success, redirect to the article page
+                console.log(response);
+                $location.path('/articles' + response.data.id)
+            }, function (response) {
                 //error
-            } else if (!$scope.article.body) {
-                //error
-                console.log("Error in create article: " + response);
-            } else {
-                ArticleFactory.create($scope.article).then(function (response) {
-                    //Success
-                    $scope.article = {};
-
-                }, function (response) {
-                    //error
-                    console.log(response);
-                    $scope.errors = response.data;
-                });
-            }
-
+                console.log(response);
+                $scope.errors = response.data;
+            });
         };
 
         //Vil vi lagre artikkelen hver gang en tag legges til eller slettes?

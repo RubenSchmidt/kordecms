@@ -116,7 +116,7 @@ class ArticleList(ArticleMixin, generics.ListCreateAPIView):
         queryset = Article.objects.all().order_by('-created_at')
         limit = self.request.query_params.get('limit', None)
         if limit is not None:
-            return queryset[:limit]
+            return queryset[:int(limit)]
         return queryset
 
 

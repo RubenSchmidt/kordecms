@@ -35,8 +35,17 @@ kordeCms.factory('ArticleFactory',
             }
         }
 
-        function update(article) {
-            return $http.put(endpoint + '/' + article.id, article)
+        function update(article, file) {
+            if(angular.isUndefined(file)){
+                return $http.put(endpoint + '/' + article.id, article)
+            }else {
+                return Upload.upload({
+                    url: endpoint + '/' + article.id,
+                    method: 'PUT',
+                    data: article,
+                    file: file
+                });
+            }
         }
 
         function addNewElement(element, file) {

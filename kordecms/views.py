@@ -122,8 +122,6 @@ def get_page_elements_sorted(request, slug):
     return Response(data=rows, status=status.HTTP_200_OK)
 
 
-
-
 class ArticleMixin(object):
     model = Article
     queryset = Article.objects.all().order_by('-created_at')

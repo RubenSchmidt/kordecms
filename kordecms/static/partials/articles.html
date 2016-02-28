@@ -10,7 +10,8 @@
                     <img ng-src="{{ article.thumbnail_image_url }}" class="md-avatar" alt="Artikkel bilde"/>
                     <div class="md-list-item-text">
                         <h3>{{ article.title }} </h3>
-                        <p>
+                        <h4>{{ article.created_at | date: 'dd.MM.yyyy' }} - {{ article.author_name }} - {{ publishedText(article) }}</h4>
+                        <p ng-bind-html="article.body_text">
                             {{ article.body_text }}
                         </p>
                     </div>
@@ -18,34 +19,4 @@
             </md-list>
         </div>
     </md-content>
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Deres artikler</h1>
-                <a href="#/articles/new"><i class="add-article fa fa-plus-circle fa-4x"></i></a>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <div class="row article" ng-repeat="article in articles">
-            <a class="no-style" href="#/articles/{{ article.id }}">
-                <div class="article-wrapper">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>{{ article.title }}</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="article-inline-header">{{ article.created_at | date:'dd/MM-yyyy' }}</h4>
-                            <h4 class="article-inline-header">{{ article.author_name }}</h4>
-                            <h4 class="article-inline-header">{{ publishedText(article) }}</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        {{ article.body_text }}
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
 </div>

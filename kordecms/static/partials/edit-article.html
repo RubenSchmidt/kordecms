@@ -4,7 +4,7 @@
         Endre bilde <span class="fa fa-pencil"></span>
     </div>
 </div>
-<div class="w-700 block-center">
+<div class="w-900 block-center">
     <div class="t-center" ng-show="article.thumbnail_image_src">
         <img ngf-thumbnail="article.thumbnail_image_src" alt="">
     </div>
@@ -23,8 +23,10 @@
     </div>
     <div class="row">
         <div class="inline col-xs-12">
-            <div hallo-editor class="p-10-20" ng-model="article.body_text"
-                 ng-bind-html="article.body_text"></div>
+            <div text-angular class="p-10-20" ng-model="article.body_text">
+
+            </div>
+
         </div>
     </div>
     <div class="row">

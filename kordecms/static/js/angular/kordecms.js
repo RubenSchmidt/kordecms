@@ -1,7 +1,7 @@
 /**
  * Created by rubenschmidt on 16.02.2016.
  */
-var kordeCms = angular.module("kordeCms", ['ngCookies', 'ngRoute', 'ngSanitize', 'ngFileUpload', 'youtube-embed', 'ngMaterial', 'ngMessages']);
+var kordeCms = angular.module("kordeCms", ['ngCookies', 'ngRoute', 'ngSanitize', 'ngFileUpload', 'youtube-embed', 'ngMaterial', 'ngMessages', 'textAngular']);
 
 kordeCms.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -51,6 +51,7 @@ kordeCms.config(['$routeProvider', function ($routeProvider) {
         })
         .otherwise('/login')
 }]);
+
 kordeCms.run(function ($rootScope, $location, $route, AuthService) {
     //Get the auth status of the user, if it goes trough we have a valid token.
     AuthService.getAuthStatus().then(function () {

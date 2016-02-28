@@ -89,6 +89,41 @@ class PageElementList(generics.ListAPIView):
         return queryset.filter(page__slug=self.kwargs.get('slug'))
 
 
+@api_view(['GET'])
+def get_page_elements_sorted(request, slug):
+    """
+    Return the page elements in a list of rows, with the columns inside each row.
+    :param slug: Page name slug
+    :param request:
+    """
+    queryset = PageElement.objects.filter(page__slug=slug).order_by('row', 'col')
+    if not queryset:
+        return Response(_('Could not find the page elements'), status=status.HTTP_404_NOT_FOUND)
+
+    rows = []
+    temp = []
+    check = 0
+    index = 0
+    for r in queryset:
+        serialized = PageElementSerializer(r).data
+        index = r.row - 1
+        if index == check:
+            temp.append(serialized)
+
+        else:
+            rows.append(temp)
+            temp = [serialized]
+            check = index
+
+    # Only one row, therefore temp is not added in the for loop
+    if check == index:
+        rows.append(temp)
+
+    return Response(data=rows, status=status.HTTP_200_OK)
+
+
+
+
 class ArticleMixin(object):
     model = Article
     queryset = Article.objects.all().order_by('-created_at')

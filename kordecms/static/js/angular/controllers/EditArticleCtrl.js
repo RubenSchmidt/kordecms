@@ -2,7 +2,7 @@
  * Created by rubenschmidt on 24.02.2016.
  */
 kordeCms.controller('EditArticleCtrl',
-    ['$scope', '$routeParams','$location', 'PageFactory', 'ArticleFactory', 'SweetAlert', '$mdDialog' , function ($scope, $routeParams, $location ,PageFactory, ArticleFactory, SweetAlert, $mdDialog) {
+    ['$scope', '$routeParams','$location', 'PageFactory', 'ArticleFactory', 'SweetAlert' , function ($scope, $routeParams, $location ,PageFactory, ArticleFactory, SweetAlert) {
         $scope.editorMode = true;
         $scope.newTagInput = {};
         $scope.article = {};
@@ -125,24 +125,5 @@ kordeCms.controller('EditArticleCtrl',
                 $scope.errors = response.data;
                 SweetAlert.swal({title: "Noe gikk galt!", type: "error", showConfirmButton: false, timer: 1000});
             });
-        };
-
-        $scope.showTabDialog = function (ev) {
-            $mdDialog.show({
-                    controller: 'ArticleElementDialogCtrl',
-                    templateUrl: '/static/partials/dialog/editArticleDialog.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    locals: {
-                        article: $scope.article
-                    }
-                })
-                .then(function (answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                    console.log(answer);
-                }, function () {
-                    $scope.status = 'You cancelled the dialog.';
-                });
         };
     }]);

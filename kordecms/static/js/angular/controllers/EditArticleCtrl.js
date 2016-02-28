@@ -2,7 +2,7 @@
  * Created by rubenschmidt on 24.02.2016.
  */
 kordeCms.controller('EditArticleCtrl',
-    ['$scope', '$routeParams','$location', 'PageFactory', 'ArticleFactory', 'SweetAlert', function ($scope, $routeParams, $location ,PageFactory, ArticleFactory, SweetAlert) {
+    ['$scope', '$routeParams','$location', 'PageFactory', 'ArticleFactory', 'SweetAlert', '$mdDialog' , function ($scope, $routeParams, $location ,PageFactory, ArticleFactory, SweetAlert, $mdDialog) {
         $scope.editorMode = true;
         $scope.newTagInput = {};
         $scope.article = {};

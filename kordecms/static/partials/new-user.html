@@ -1,64 +1,43 @@
-<div class="has-navbar">
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Legg til ny bruker</h1>
-            </div>
-            <!-- /.col-lg-12 -->
+<div class="p-30-90">
+    <md-content layout-padding>
+      <form>
+        <div layout="row">
+            <h2 class="t-thin t-upper m-50-0">Fyll inn brukerinformasjon:</h2>
         </div>
-        <!-- /.row -->
-
-         <form ng-submit="saveUser()" class="form-horizontal user contact-form t-very-thin font-size-18">
-            <fieldset>
-                <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                        <p ng-if="errors.username">{{ errors.username[0] }}</p>
-                        <input id="username" name="username" type="text" placeholder="Brukernavn" class="korde-very-thin contact-field" ng-model="user.username">
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                         <p ng-if="errors.password">{{ errors.password[0] }}</p>
-                        <input id="password" name="password" type="text" placeholder="Passord" class="korde-very-thin contact-field" ng-model="user.password">
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <div class="col-md-4 col-md-offset-4">
-                        <input id="email" name="email" type="text" placeholder="E-post" class="korde-very-thin contact-field" ng-model="user.email">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                        <input id="firstname" name="first_name" type="text" placeholder="Fornavn" class="korde-very-thin contact-field" ng-model="user.first_name">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                        <input id="lastname" name="last_name" type="text" placeholder="Etternavn" class="korde-very-thin contact-field" ng-model="user.last_name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-
-                        <div class="col-md-6">
-                            <input type="radio" id="radio1" name="radios" ng-value=false ng-model="user.is_superuser" ng-checked=true>
-                            <label for="radio1">Bruker</label>
-                        </div>
-                        <div class="col-md-6">
-                           <input type="radio" id="radio2" name="radios" ng-value=true ng-model="user.is_superuser">
-                            <label for="radio2">Admin</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                        <button class="button-no-bg-confirm center-block">Opprett bruker</button>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>First name</label>
+            <input ng-model="user.first_name">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input ng-model="user.last_name">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Username</label>
+              <input ng-model="user.username">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Email</label>
+              <input type="email" ng-model="user.email">
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Password</label>
+            <input type="password" ng-model="user.password">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+            <md-button ng-click="createUser()" class="md-raised md-primary" flex="30">Legg til bruker</md-button>
+            <div class="m-10-10">
+                <md-checkbox ng-model="data.cb5" class="md-primary m-0-10" ng-model="user.is_superuser" flex-gt-sm>
+                    <h5 class="t-upper">Is admin</h5>
+                </md-checkbox>
+            </div>
+        </div>
+      </form>
+  </md-content>
 </div>

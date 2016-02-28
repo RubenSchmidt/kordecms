@@ -8,6 +8,7 @@ kordeCms.controller('NewUserCtrl',
     ['$scope', '$location', 'UserFactory', function ($scope, $location, UserFactory) {
 
         $scope.createUser = function () {
+            console.log("Does this");
             if ($scope.user){
                 $scope.user.is_staff = true;
                 UserFactory.create($scope.user).then(function (response) {

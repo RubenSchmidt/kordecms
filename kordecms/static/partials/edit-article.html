@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="inline" ng-class="{'col-md-6': !element.width_type, 'col-md-12': element.width_type}" ng-repeat="element in article.elements">
+                <div class="inline" ng-class="{'col-md-6': !element.width_type, 'col-md-12': element.width_type}"
+                     ng-repeat="element in article.elements">
                     <div ng-if="element.type" hallo-editor class="p-10-20 hidden-input" ng-model="element.text"></div>
                     <img ng-if="!element.type" class="width-fill" ng-src="{{ element.image_url }}" alt="">
                 </div>
@@ -34,7 +35,7 @@
             <div class="divider m-20-0"></div>
         </div>
         <div class="t-center" ng-show="newElement.file">
-            <img ngf-thumbnail="newElement.file"  alt="">
+            <img ngf-thumbnail="newElement.file" alt="">
         </div>
         <div class="row">
             <div class="inline" ng-class="{'col-md-6': !newElement.width_type, 'col-md-12': newElement.width_type}">
@@ -44,12 +45,16 @@
         <div class="article-element-picker t-center m-30-0">
             <button ng-class="{'button-active': newElement.type == 1}" ng-click="setNewElementType(1)">Tekst</button>
             <button ng-class="{'button-active': newElement.type == 0}" ng-click="setNewElementType(0)">Bilde</button>
-            <button ng-class="{'button-active': newElement.width_type == 1}" ng-click="setNewElementType(1, true)">Hel</button>
-            <button ng-class="{'button-active': newElement.width_type == 0}" ng-click="setNewElementType(0, true)">Halv</button>
+            <button ng-class="{'button-active': newElement.width_type == 1}" ng-click="setNewElementType(1, true)">Hel
+            </button>
+            <button ng-class="{'button-active': newElement.width_type == 0}" ng-click="setNewElementType(0, true)">
+                Halv
+            </button>
             <button ng-click="addNewElement()"><span class="fa fa-plus"></span> Legg til</button>
         </div>
-        <div class="image-drop-area" ng-show="newElement.type == 0" ngf-drop="setNewElementImage($file)" ngf-drag-over-class="'dragover'">
-            <div class="upload-button" ngf-select="setNewElementImage($file)"  name="newImage"
+        <div class="image-drop-area" ng-show="newElement.type == 0" ngf-drop="setNewElementImage($file)"
+             ngf-drag-over-class="'dragover'">
+            <div class="upload-button" ngf-select="setNewElementImage($file)" name="newImage"
                  ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100">
                 <p>Last opp bilde</p>
             </div>
@@ -67,22 +72,27 @@
 </div>
 
 
-<div id = "fileModal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title t-center">Bildeopplasting</h4>
-      </div>
-      <div class="modal-body">
-        <div class="image-drop-area" ngf-drop="setNewThumbnailImage($file)" ngf-drag-over-class="'dragover'" ng-show="!thumbnailUploaded()">
-            <div class="upload-button" ngf-select="setNewThumbnailImage($file)" name="newImage"
-                 ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100">
-                <p>Last opp bilde</p>
+<div id="fileModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title t-center">Bildeopplasting</h4>
             </div>
-            <h4 class="upload-text"><em>eller dra inn og slipp et bilde her...</em></h4>
-        </div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+            <div class="modal-body">
+                <div class="t-center" ng-show="article.thumbnail_image_src">
+                    <img ngf-thumbnail="article.thumbnail_image_src" alt="">
+                </div>
+                <div class="image-drop-area" ngf-drop="setNewThumbnailImage($file)" ngf-drag-over-class="'dragover'"
+                     ng-show="!article.thumbnail_image_src">
+                    <div class="upload-button" ngf-select="setNewThumbnailImage($file)" name="newImage"
+                         ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100">
+                        <p>Last opp bilde</p>
+                    </div>
+                    <h4 class="upload-text"><em>eller dra inn og slipp et bilde her...</em></h4>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

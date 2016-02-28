@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
-from kordecms.models import Page, Article, ArticleComment, PageElement, ArticleElement
-from kordecms.permissions import ArticleAuthorCanEditPermission, IsAdminOrReadOnly
-from kordecms.serializers import ArticleSerializer, ArticleCommentSerializer, UserSerializer, PageSerializer, \
+from .models import Page, Article, ArticleComment, PageElement, ArticleElement
+from .permissions import ArticleAuthorCanEditPermission, IsAdminOrReadOnly
+from .serializers import ArticleSerializer, ArticleCommentSerializer, UserSerializer, PageSerializer, \
     PageElementSerializer, ArticleElementSerializer
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import permissions, generics, status

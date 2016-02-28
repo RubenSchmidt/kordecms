@@ -1,53 +1,67 @@
-<div class="has-navbar">
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Brukere</h1>
-            </div>
-            <!-- /.col-lg-12 -->
+<div class="p-30-30">
+    <md-toolbar class="md-whiteframe-z1">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Users</span>
+        </h2>
+      </div>
+    </md-toolbar>
+    <md-list ng-cloak class="md-whiteframe-z1">
+      <md-list-item>
+          <img class="md-avatar" style="opacity: 0;" />
+          <p>Name</p>
+          <p>Role</p>
+          <p>Last login</p>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item ng-repeat="user in users" ng-click="go('/users/' + user.id)">
+        <img alt="{{ person.name }}" ng-src="/static/img/icon-user-default.png" class="md-avatar" />
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        <p>{{ getRole(user) }}</p>
+        <p>{{ user.last_login | date: "dd.MM.yyyy" }}</p>
+      </md-list-item>
+    </md-list>
+    <!--
+    <div class="row t-very-thin">
+        <div class="col-md-3">
+            <p> Navn</p>
         </div>
-        <!-- /.row -->
-        <div class="row t-very-thin">
-            <div class="col-md-3">
-                <p> Navn</p>
-            </div>
-            <div class="col-md-3">
-                <p> Rolle </p>
-            </div>
-            <div class="col-md-3">
-                <p> Siste innlogging </p>
-            </div>
+        <div class="col-md-3">
+            <p> Rolle </p>
         </div>
-        <div class="divider"></div>
-        <div class="user-table t-very-thin">
-            <div class="row p-10-0" ng-repeat="user in users">
-                <div class="col-md-3">
-                    <p> {{ user.first_name }} {{ user.last_name }}</p>
-                </div>
-                <div class="col-md-3">
-                    <p> {{ getRole(user) }} </p>
-                </div>
-                <div class="col-md-3">
-                    <p> {{ user.last_login | date: "dd.MM.yyyy" }} </p>
-                </div>
-                <div class="col-md-1">
-                    <button type="button" class="button-no-bg-delete" ng-if="canDeleteUser(user)"
-                            ng-click="deleteUser(user)">Slett
-                    </button>
-                </div>
-                <div class="col-md-1">
-                    <a href="#/users/{{ user.id }}">
-                        <button type="button" class="button-no-bg-edit" ng-if="canEditUser(user)">Endre</button>
-                    </a>
-                </div>
-            </div>
+        <div class="col-md-3">
+            <p> Siste innlogging </p>
         </div>
-        <div class="row" ng-if="currentUser.is_superuser">
-            <div class="col-md-4 col-md-offset-4">
-                <a href="#/new-user">
-                    <button type="button" class="button-no-bg-confirm center-block">Legg til ny bruker</button>
+    </div>
+    <div class="divider"></div>
+    <div class="user-table t-very-thin">
+        <div class="row p-10-0" ng-repeat="user in users">
+            <div class="col-md-3">
+                <p> {{ user.first_name }} {{ user.last_name }}</p>
+            </div>
+            <div class="col-md-3">
+                <p> {{ getRole(user) }} </p>
+            </div>
+            <div class="col-md-3">
+                <p> {{ user.last_login | date: "dd.MM.yyyy" }} </p>
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="button-no-bg-delete" ng-if="canDeleteUser(user)"
+                        ng-click="deleteUser(user)">Slett
+                </button>
+            </div>
+            <div class="col-md-1">
+                <a href="#/users/{{ user.id }}">
+                    <button type="button" class="button-no-bg-edit" ng-if="canEditUser(user)">Endre</button>
                 </a>
             </div>
         </div>
     </div>
+    <div class="row" ng-if="currentUser.is_superuser">
+        <div class="col-md-4 col-md-offset-4">
+            <a href="#/new-user">
+                <button type="button" class="button-no-bg-confirm center-block">Legg til ny bruker</button>
+            </a>
+        </div>
+    </div>-->
 </div>

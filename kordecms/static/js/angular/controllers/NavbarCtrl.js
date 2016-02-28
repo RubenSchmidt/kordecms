@@ -26,4 +26,9 @@ kordeCms.controller('NavbarCtrl',
                 }
             });
         }
+
+        $scope.go = function (url) {
+            $location.path(url);
+        };
+
     }]);

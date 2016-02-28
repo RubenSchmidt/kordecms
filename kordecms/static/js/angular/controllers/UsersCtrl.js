@@ -3,7 +3,7 @@
  */
 
 kordeCms.controller('UsersCtrl',
-    ['$scope', '$filter', 'SweetAlert', 'UserFactory', function ($scope, $filter, SweetAlert, UserFactory) {
+    ['$scope', '$filter', '$location', 'SweetAlert', 'UserFactory', function ($scope, $filter, $location, SweetAlert, UserFactory) {
 
         $scope.name = ['last_name', 'first_name'];
         $scope.reverse = false;
@@ -62,5 +62,9 @@ kordeCms.controller('UsersCtrl',
                 return "Bruker";
             }
         }
+
+        $scope.go = function (url) {
+            $location.path(url);
+        };
 
     }]);

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from kordecms.models import Article, ArticleComment, Page, PageElement, ArticleElement
+from .models import Article, ArticleComment, Page, PageElement, ArticleElement
 
 
 # Register your models here.

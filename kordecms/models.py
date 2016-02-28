@@ -46,6 +46,13 @@ class Page(models.Model):
         verbose_name=_('Pagename')
     )
 
+    parent_page = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+
     slug = models.SlugField(
         verbose_name=_('Page slug'),
         unique=True,

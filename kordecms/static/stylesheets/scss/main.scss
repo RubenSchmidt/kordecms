@@ -1,8 +1,79 @@
 
+@import "mixins";
+
 button {
   &:focus {
     outline:none;
   }
+}
+
+.nav-header {
+    width: 100%;
+
+    padding: 40px;
+    background-color: #106CC8;
+    background: linear-gradient(#185694, #106cc8);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #185694), color-stop(1, #106cc8));
+    background: -webkit-linear-gradient(top, #185694 0%, #106cc8 100%);
+    background: -moz-linear-gradient(top, #185694 0%, #106cc8 100%);
+    background: linear-gradient(top, #185694 0%, #106cc8 100%);
+    border-bottom: 1px solid #267ED5;
+    flex-shrink: 0;
+    z-index: 2;
+
+    img {
+      width: 50%;
+      display: block;
+      margin: 0 auto;
+    }
+}
+
+.korde-sidenav {
+  height: 100%;
+  background: #106CC8;
+}
+
+.site-sidenav {
+    background: #106CC8;
+}
+
+.site-content-toolbar {
+    background: #f6f6f6 !important;
+    color: #202020 !important;
+    z-index: 3;
+}
+
+.md-whiteframe-glow-z1 {
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+}
+
+.sidenav-list {
+  width: 100%;
+  padding: 0;
+  color: #fff;
+  background: #106CC8;
+  margin: 0;
+
+  li {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #267ED5;
+
+    .sidenav-button {
+      width: 100%;
+      height: 100%;
+      padding: 0 20px;
+      text-align: left;
+      margin: 0;
+
+      span {margin-right: 10px;}
+    }
+  }
+}
+
+.card-image {
+  width: 100%;
+  @include has-background-image();
 }
 
 .loader {

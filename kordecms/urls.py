@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from kordecms import views
+from . import views
 from rest_framework import routers
 import rest_framework_jwt.views
 

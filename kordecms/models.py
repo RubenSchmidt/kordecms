@@ -158,8 +158,7 @@ class Article(KordeEditableModel):
         verbose_name=_('created at'))
 
     tags = TaggableManager(
-        blank=True,
-        null=True
+        blank=True
     )
 
     is_published = models.BooleanField(

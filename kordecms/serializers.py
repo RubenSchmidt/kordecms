@@ -81,6 +81,11 @@ class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
             'id', 'title', 'author_name', 'body_text', 'thumbnail_image_url', 'created_at', 'tags', 'author',
             'elements')
 
+    def get_validation_exclusions(self):
+
+        exclusions = super(ArticleSerializer, self).get_validation_exclusions()
+        return exclusions + ['tags']
+
 
 class ArticleCommentSerializer(serializers.ModelSerializer):
     class Meta:

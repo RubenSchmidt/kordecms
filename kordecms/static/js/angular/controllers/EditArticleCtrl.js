@@ -129,7 +129,7 @@ kordeCms.controller('EditArticleCtrl',
 
         $scope.showTabDialog = function (ev) {
             $mdDialog.show({
-                    controller: 'ArticleelementDialogCtrl',
+                    controller: 'ArticleElementDialogCtrl',
                     templateUrl: '/static/partials/dialog/editArticleDialog.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,

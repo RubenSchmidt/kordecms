@@ -6,6 +6,8 @@ kordeCms.controller('EditArticleCtrl',
         $scope.editorMode = true;
         $scope.newTagInput = {};
         $scope.article = {};
+        //Init this so the tabs work poperly
+        $scope.article.tags = [];
         //Init empty elements list.
         // Initialize new element with default values
         initNewElement();

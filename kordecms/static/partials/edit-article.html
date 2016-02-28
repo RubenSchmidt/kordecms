@@ -2,10 +2,14 @@
     <div class="p-20-20">
         <h1 class="page-header">{{ pageHeader() }}</h1>
         <div class="w-800 block-center">
-            <div class="edit-article-cover h-300" style="background-image: url({{ article.thumbnail_image_url }});">
+            <div class="edit-article-cover h-300" style="background-image: url({{ article.thumbnail_image_url }});"
+                 ng-show="!article.thumbnail_image_src">
                 <div class="cover-editor p-0-10 font-size-16" data-toggle="modal" data-target="#fileModal">
                     Endre bilde <span class="fa fa-pencil"></span>
                 </div>
+            </div>
+            <div class="t-center" ng-show="article.thumbnail_image_src">
+                <img ngf-thumbnail="article.thumbnail_image_src" alt="">
             </div>
             <div class="row m-10-0">
                 <div class="t-center">
@@ -81,11 +85,7 @@
                 <h4 class="modal-title t-center">Bildeopplasting</h4>
             </div>
             <div class="modal-body">
-                <div class="t-center" ng-show="article.thumbnail_image_src">
-                    <img ngf-thumbnail="article.thumbnail_image_src" alt="">
-                </div>
-                <div class="image-drop-area" ngf-drop="setNewThumbnailImage($file)" ngf-drag-over-class="'dragover'"
-                     ng-show="!article.thumbnail_image_src">
+                <div class="image-drop-area" ngf-drop="setNewThumbnailImage($file)" ngf-drag-over-class="'dragover'">
                     <div class="upload-button" ngf-select="setNewThumbnailImage($file)" name="newImage"
                          ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100">
                         <p>Last opp bilde</p>

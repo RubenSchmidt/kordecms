@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="inline col-xs-12">
-                    <div hallo-editor class="p-10-20" ng-model="article.body_text"></div>
+                    <div hallo-editor class="p-10-20" ng-model="article.body_text" ng-bind-html="article.body_text"></div>
                 </div>
             </div>
             <div class="row">
@@ -43,7 +43,7 @@
         </div>
         <div class="row">
             <div class="inline" ng-class="{'col-md-6': !newElement.width_type, 'col-md-12': newElement.width_type}">
-                <div hallo-editor class="p-10-20 hidden-input" ng-model="newElement.text"></div>
+                <div hallo-editor class="p-10-20 hidden-input" ng-model="newElement.text" ng-bind-html="newElement.text"></div>
             </div>
         </div>
         <div class="article-element-picker t-center m-30-0">

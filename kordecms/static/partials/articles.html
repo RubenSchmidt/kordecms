@@ -3,8 +3,8 @@
         <div layout="row" flex="100" layout-align="center">
             <h1>Artikler</h1>
         </div>
-        <div layout="row" flex="100" layout-align="center">
-            <md-list>
+        <div layout="row" layout-align="center">
+            <md-list flex="100">
                 <md-list-item class="md-3-line md-long-text" ng-repeat="article in articles"
                               ng-click="go(article.id)">
                     <img ng-src="{{ article.thumbnail_image_url }}" class="md-avatar" alt="Artikkel bilde"/>

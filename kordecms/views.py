@@ -93,7 +93,6 @@ class ArticleMixin(object):
     model = Article
     queryset = Article.objects.all().order_by('-created_at')
     serializer_class = ArticleSerializer
-    parser_classes = ( FormParser, MultiPartParser,)
 
     permission_classes = [
         ArticleAuthorCanEditPermission

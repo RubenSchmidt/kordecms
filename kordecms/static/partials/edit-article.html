@@ -31,24 +31,38 @@
     <div class="row">
         <div class="inline" ng-class="{'col-md-6': !element.width_type, 'col-md-12': element.width_type}"
              ng-repeat="element in article.elements">
-            <text-angular ng-if="element.type" name="element{{ element.id }}" ng-model="element.text"
-                          ta-target-toolbars='toolbar' placeholder="Skriv nytt avsnitt her" ta-disabled='disabled'>
+            <text-angular ng-if="element.type"
+                          ng-model="element.text"
+                          ta-target-toolbars='toolbar'
+                          placeholder="Skriv nytt avsnitt her">
             </text-angular>
             <img ng-if="!element.type" class="width-fill" ng-src="{{ element.image_url }}" alt="">
         </div>
     </div>
     <div class="divider m-20-0"></div>
 </div>
-<div class="t-center" ng-show="newElement.file">
-    <img ngf-thumbnail="newElement.file" alt="">
-</div>
-<div class="row">
-    <div class="inline" ng-class="{'col-md-6': !newElement.width_type, 'col-md-12': newElement.width_type}">
-        <div hallo-editor class="p-10-20 hidden-input" ng-model="newElement.text"
-             ng-bind-html="newElement.text"></div>
+<!-- New element -->
+<div layout="row" layout-align="center" ng-show="newElement">
+    <div flex="70">
+        <text-angular ng-model="newElement.text" ng-if="newElement.type == 1"></text-angular>
+        <div class="image-drop-area" ng-if="newElement.type == 0" ngf-drop="setNewElementImage($file)"
+             ngf-drag-over-class="'dragover'">
+            <div ng-hide="newElement.file">
+                <div class="upload-button" ngf-select="setNewElementImage($file)" name="newImage"
+                     ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100">
+                    <p>Last opp bilde</p>
+                </div>
+                <h4 class="upload-text"><em>eller dra inn og slipp et bilde her...</em></h4>
+            </div>
+            <img flex="100" ngf-thumbnail="newElement.file">
+        </div>
+        <md-button class="md-raised md-primary" ng-click="addNewElement()">Legg til element</md-button>
+        <md-button class="md-raised md-warn" ng-click="cancelNewElement()">Avbryt</md-button>
     </div>
 </div>
-<md-fab-toolbar md-open="demo.isOpen"
+
+
+<md-fab-toolbar md-open="false" ng-if="!isNew"
                 md-direction="left">
     <md-fab-trigger class="align-with-text">
         <md-button aria-label="menu" class="md-fab md-primary">
@@ -57,19 +71,22 @@
     </md-fab-trigger>
     <md-toolbar>
         <md-fab-actions class="md-toolbar-tools">
-            <md-button aria-label="comment" class="md-icon-button">
-                <i class="fa fa-picture-o"></i>
+            <md-button class="md-raised" ng-click="startNewElement(0, 1)">
+                <i class="fa fa-picture-o"></i> Bilde hel
             </md-button>
-            <md-button aria-label="label" class="md-icon-button">
-                <i class="fa fa-picture-o"></i>
+            <md-button class="md-raised" ng-click="startNewElement(1, 1)">
+                <i class="fa fa-file-text-o"></i>Tekst hel
             </md-button>
-            <md-button aria-label="photo" class="md-icon-button">
-                <i class="fa fa-picture-o"></i>
+            <md-button class="md-raised" ng-click="startNewElement(0, 0)">
+                <i class="fa fa-picture-o"></i> Bilde halv
+            </md-button>
+            <md-button class="md-raised" ng-click="startNewElement(1, 0)">
+                <i class="fa fa-file-text-o"></i>Tekst halv
             </md-button>
         </md-fab-actions>
     </md-toolbar>
 </md-fab-toolbar>
-<div class="article-element-picker t-center m-30-0">
+<!--<div class="article-element-picker t-center m-30-0">
 
     <button ng-class="{'button-active': newElement.type == 1}" ng-click="setNewElementType(1)">Tekst</button>
     <button ng-class="{'button-active': newElement.type == 0}" ng-click="setNewElementType(0)">Bilde</button>
@@ -79,15 +96,8 @@
         Halv
     </button>
     <button ng-click="addNewElement()"><span class="fa fa-plus"></span> Legg til</button>
-</div>
-<div class="image-drop-area" ng-show="newElement.type == 0" ngf-drop="setNewElementImage($file)"
-     ngf-drag-over-class="'dragover'">
-    <div class="upload-button" ngf-select="setNewElementImage($file)" name="newImage"
-         ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100">
-        <p>Last opp bilde</p>
-    </div>
-    <h4 class="upload-text"><em>eller dra inn og slipp et bilde her...</em></h4>
-</div>
+</div>-->
+
 
 <div class="t-center">
     <button class="button-no-bg-confirm m-10-20 w-250" ng-click="saveArticle()">Lagre</button>

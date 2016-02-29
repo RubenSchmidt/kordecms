@@ -23,16 +23,15 @@
     </div>
     <div class="row">
         <div class="inline col-xs-12">
-            <div text-angular class="p-10-20" ng-model="article.body_text">
-
-            </div>
+            <text-angular-toolbar name="toolbar"></text-angular-toolbar>
+            <text-angular name="body_text" ng-model="article.body_text" ta-target-toolbars='toolbar'></text-angular>
 
         </div>
     </div>
     <div class="row">
         <div class="inline" ng-class="{'col-md-6': !element.width_type, 'col-md-12': element.width_type}"
              ng-repeat="element in article.elements">
-            <div ng-if="element.type" hallo-editor class="p-10-20 hidden-input" ng-model="element.text"></div>
+            <text-angular ng-if="element.type" name="element{{ element.id }}" ng-model="element.text" ta-target-toolbars='toolbar'></text-angular>
             <img ng-if="!element.type" class="width-fill" ng-src="{{ element.image_url }}" alt="">
         </div>
     </div>

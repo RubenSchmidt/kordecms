@@ -55,7 +55,7 @@ kordeCms.controller('EditArticleCtrl',
         };
 
         $scope.pageHeader = function () {
-            return isNew ? "Skriv en ny artikkel" : "Rediger artikkel";
+            return $scope.isNew ? "Skriv en ny artikkel" : "Rediger artikkel";
         };
 
         $scope.addNewElement = function () {
@@ -118,7 +118,7 @@ kordeCms.controller('EditArticleCtrl',
         };
 
         $scope.saveArticle = function () {
-            if (isNew) {
+            if ($scope.isNew) {
                 createArticle();
             } else {
                 if ($scope.newElement){

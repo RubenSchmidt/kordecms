@@ -182,8 +182,9 @@ class ArticleElementList(generics.ListCreateAPIView):
         # Type is image
         if obj['type'] == 0:
             # New image file is uploaded
-            if self.request.FILES.get('file'):
-                serializer.save(image_src=self.request.FILES.get('file'))
+            file = self.request.FILES.get('file')
+            if file:
+                serializer.save(image_src=file)
                 return
         # save the normal way
         serializer.save()
@@ -197,6 +198,18 @@ class ArticleElementDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [
         permissions.IsAuthenticated
     ]
+
+    def perform_update(self, serializer):
+        element = serializer.validated_data
+        # element is a image
+        if element['type'] == 0:
+            # New image file is uploaded
+            file = self.request.FILES.get('file')
+            if file:
+                serializer.save(image_src=file)
+                return
+        # Save without adding new image
+        serializer.save()
 
 
 class UserArticleList(generics.ListAPIView):

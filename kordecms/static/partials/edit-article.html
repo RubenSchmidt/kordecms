@@ -34,13 +34,25 @@
             <text-angular ng-if="element.type"
                           ng-model="element.text"
                           ta-target-toolbars='toolbar'
-                          placeholder="Skriv nytt avsnitt her" ng-focus="showEditButtons(element.id)" ng-blur="hideEditButtons(element.id)">
+                          placeholder="Skriv nytt avsnitt her" ng-focus="showEditButtons(element.id)"
+                          ng-blur="hideEditButtons(element.id)">
             </text-angular>
-            <img ng-if="!element.type" class="width-fill" ng-src="{{ element.image_url }}" alt="" ng-click="showEditButtons(element.id)" ng-blur="hideEditButtons(element.id)">
-            <div ng-if="showButtonsFor == element.id">
-                <md-button class="md-primary" aria-label="delete element" ng-click="deleteElement(element, $index)"><i class="fa fa-trash-o"></i></md-button>
-                <md-button class="md-primary" aria-label="edit element" ng-if="element.type == 0"><i class="fa fa-pencil-square-o"></i></md-button>
-                <md-button class="md-primary" aria-label="update element" ng-click="updateElement(element)"><i class="fa fa-check"></i></md-button>
+            <div ng-if="element.type == 0" ng-click="showEditButtons(element.id)" ng-blur="hideEditButtons(element.id)">
+                <img class="width-fill" ng-src="{{ element.image_url }}" alt="element image">
+                <img class="width-fill" ngf-thumbnail="element.image_src" >
+            </div>
+            <div ng-show="showButtonsFor == element.id">
+                <md-button class="md-primary" aria-label="delete element" ng-click="deleteElement(element, $index)">
+                    <i class="fa fa-trash-o"></i>
+                </md-button>
+                <md-button class="md-primary" aria-label="edit element" ng-if="element.type == 0"
+                           ngf-select="setElementImage($file, element, $index)" name="element image"
+                           ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB">
+                    <i class="fa fa-pencil-square-o"></i>
+                </md-button>
+                <md-button class="md-primary" aria-label="update element" ng-click="updateElement(element)">
+                    <i class="fa fa-check"></i>
+                </md-button>
             </div>
         </div>
     </div>

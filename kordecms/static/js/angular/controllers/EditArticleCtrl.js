@@ -150,7 +150,26 @@ kordeCms.controller('EditArticleCtrl',
         //Save the file from the image upload for a new element
         $scope.setNewElementImage = function (file) {
             $scope.newElement.file = file;
-            console.log(file);
+        };
+
+        //Set a new image for an existing element
+        $scope.setElementImage = function (file, element, index) {
+            element.image_src = file;
+            ArticleFactory.updateElement(element, file).then(function(response){
+                //Success
+                SweetAlert.swal({title: "Lagret", type: "success", showConfirmButton: false, timer: 1000});
+                // Update the DOM element
+                $scope.article.elements[index] = response.data;
+            }, function(response){
+                //Error
+                SweetAlert.swal({
+                    title: "Noe gikk galt!",
+                    text: "Bildet ble ikke lagret",
+                    type: "error",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            });
         };
 
 

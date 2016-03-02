@@ -25,9 +25,9 @@ kordeCms.factory('ArticleFactory',
 
         function create(article, file) {
             //Check for file existance
-            if(angular.isUndefined(file)){
+            if (angular.isUndefined(file)) {
                 return $http.post(endpoint, article)
-            }else {
+            } else {
                 return Upload.upload({
                     url: endpoint,
                     method: 'POST',
@@ -38,9 +38,9 @@ kordeCms.factory('ArticleFactory',
         }
 
         function update(article, file) {
-            if(angular.isUndefined(file)){
+            if (angular.isUndefined(file)) {
                 return $http.put(endpoint + '/' + article.id, article)
-            }else {
+            } else {
                 return Upload.upload({
                     url: endpoint + '/' + article.id,
                     method: 'PUT',
@@ -51,11 +51,11 @@ kordeCms.factory('ArticleFactory',
         }
 
         function addNewElement(element, file) {
-            if(angular.isUndefined(file)){
+            if (angular.isUndefined(file)) {
                 return $http.post(endpoint + '/' + element.article + '/elements', element)
-            }else {
+            } else {
                 return Upload.upload({
-                    url: endpoint + '/' + element.article +'/elements',
+                    url: endpoint + '/' + element.article + '/elements',
                     method: 'POST',
                     data: element,
                     file: file
@@ -67,8 +67,18 @@ kordeCms.factory('ArticleFactory',
             return $http.delete(endpoint + '/' + element.article + '/elements/' + element.id)
         }
 
-        function updateElement(element) {
-            return $http.put(endpoint + '/' + element.article + '/elements/' + element.id, element)
+        function updateElement(element, file) {
+            if (angular.isUndefined(file)) {
+                return $http.put(endpoint + '/' + element.article + '/elements/' + element.id, element)
+            } else {
+                return Upload.upload({
+                    url: endpoint + '/' + element.article + '/elements/' + element.id,
+                    method: 'PUT',
+                    data: element,
+                    file: file
+                });
+            }
+
         }
 
         function destroy(id) {

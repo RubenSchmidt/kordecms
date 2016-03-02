@@ -10,6 +10,8 @@ kordeCms.factory('ArticleFactory',
             create: create,
             update: update,
             addNewElement: addNewElement,
+            updateElement: updateElement,
+            destroyElement: destroyElement,
             destroy: destroy,
             count: count
         });
@@ -59,6 +61,14 @@ kordeCms.factory('ArticleFactory',
                     file: file
                 });
             }
+        }
+
+        function destroyElement(element) {
+            return $http.delete(endpoint + '/' + element.article + '/elements/' + element.id)
+        }
+
+        function updateElement(element) {
+            return $http.put(endpoint + '/' + element.article + '/elements/' + element.id, element)
         }
 
         function destroy(id) {

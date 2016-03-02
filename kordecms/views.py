@@ -189,6 +189,16 @@ class ArticleElementList(generics.ListCreateAPIView):
         serializer.save()
 
 
+class ArticleElementDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = ArticleElement
+    queryset = ArticleElement.objects.all()
+    serializer_class = ArticleElementSerializer
+    lookup_url_kwarg = 'elementId'
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+
+
 class UserArticleList(generics.ListAPIView):
     model = Article
     queryset = Article.objects.all()

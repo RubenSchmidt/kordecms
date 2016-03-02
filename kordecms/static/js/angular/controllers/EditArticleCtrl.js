@@ -2,7 +2,7 @@
  * Created by rubenschmidt on 24.02.2016.
  */
 kordeCms.controller('EditArticleCtrl',
-    ['$scope', '$routeParams', '$location', 'PageFactory', 'ArticleFactory', 'SweetAlert', function ($scope, $routeParams, $location, PageFactory, ArticleFactory, SweetAlert) {
+    ['$scope', '$routeParams', '$location', '$timeout', 'PageFactory', 'ArticleFactory', 'SweetAlert', 'textAngularManager', function ($scope, $routeParams, $location, $timeout, PageFactory, ArticleFactory, SweetAlert, textAngularManager) {
         $scope.editorMode = true;
         $scope.newTagInput = {};
         $scope.article = {};
@@ -14,17 +14,17 @@ kordeCms.controller('EditArticleCtrl',
 
         if (!$routeParams.articleId) {
             //Create new article object
-            $scope.isNew  = true;
+            $scope.isNew = true;
         } else {
             //Get existing article
             ArticleFactory.get($routeParams.articleId).then(function (response) {
                 //Success
                 $scope.article = response.data;
-                $scope.isNew  = false;
+                $scope.isNew = false;
             }, function (response) {
                 //Error
                 console.log(response);
-                SweetAlert.swal({title: "Noe gikk galt!" ,type: "error", showConfirmButton: false, timer: 1000});
+                SweetAlert.swal({title: "Noe gikk galt!", type: "error", showConfirmButton: false, timer: 1000});
             });
         }
 
@@ -49,9 +49,9 @@ kordeCms.controller('EditArticleCtrl',
             $scope.newElement.article = $scope.article.id;
         };
 
-        $scope.cancelNewElement = function(){
+        $scope.cancelNewElement = function () {
             //User cancels the new element. Set it to null so it doesnt get sent with the article update
-          $scope.newElement = null;
+            $scope.newElement = null;
         };
 
         $scope.pageHeader = function () {
@@ -70,7 +70,12 @@ kordeCms.controller('EditArticleCtrl',
                     }, function (response) {
                         //Error
                         $scope.errors = response.data;
-                        SweetAlert.swal({title: "Noe gikk galt!" ,type: "error", showConfirmButton: false, timer: 1000});
+                        SweetAlert.swal({
+                            title: "Noe gikk galt!",
+                            type: "error",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
                     });
             } else {
                 //We are adding a new image element
@@ -90,12 +95,51 @@ kordeCms.controller('EditArticleCtrl',
                     }, function (response) {
                         //Error
                         $scope.errors = response.data;
-                        SweetAlert.swal({title: "Noe gikk galt!" ,type: "error", showConfirmButton: false, timer: 1000});
+                        SweetAlert.swal({
+                            title: "Noe gikk galt!",
+                            type: "error",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
                     });
             }
             // Reset the element
             $scope.newElement = null;
         };
+
+
+        $scope.updateElement = function (element) {
+            ArticleFactory.updateElement(element).then(function (response) {
+                //Success
+                SweetAlert.swal({title: "Lagret", type: "success", showConfirmButton: false, timer: 1000});
+            }, function (response) {
+                //Error
+                SweetAlert.swal({
+                    title: "Noe gikk galt!",
+                    text: "Elementet ble ikke oppdatert",
+                    type: "error",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            });
+        };
+
+        $scope.deleteElement = function (element) {
+            ArticleFactory.destroyElement(element).then(function (response) {
+                //Success
+                SweetAlert.swal({title: "Lagret", type: "success", showConfirmButton: false, timer: 1000});
+            }, function (response) {
+                //Error
+                SweetAlert.swal({
+                    title: "Noe gikk galt!",
+                    text: "Elementet ble ikke slettet!",
+                    type: "error",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            });
+        };
+
 
         //Save the file from the image upload
         $scope.setNewThumbnailImage = function (file) {
@@ -121,7 +165,7 @@ kordeCms.controller('EditArticleCtrl',
             if ($scope.isNew) {
                 createArticle();
             } else {
-                if ($scope.newElement){
+                if ($scope.newElement) {
                     // There is a new element in the scope, add it before saving the article
                     $scope.addNewElement();
                 }
@@ -152,11 +196,22 @@ kordeCms.controller('EditArticleCtrl',
             });
         };
 
-        $scope.toggleDisabled = function(id){
-            $scope.article.elements.forEach(function(elem){
-                if (elem.id === id){
-                    elem.is_disabled = !elem.is_disabled;
+
+        //Method used to show the edit element buttons on focus.
+        $scope.showEditButtons = function (elementId) {
+            $scope.showButtonsFor = elementId;
+        };
+        //Method used to hide the edit element buttons on blur
+        $scope.hideEditButtons = function (elementId) {
+            // Wait 500 milliseconds before hiding, so if a user clicks one of the buttons, the click is registered.
+            //Note the passing of the elementId in the last parameter if the timeout
+            $timeout(function (elementId) {
+                var id = $scope.showButtonsFor;
+                if (elementId != id && id != null) {
+                    //The user has clicked directly on another element. If we set it to null now, the function will fail.
+                    return
                 }
-            })
+                $scope.showButtonsFor = null;
+            }, 500, true, elementId);
         }
     }]);

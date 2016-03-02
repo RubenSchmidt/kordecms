@@ -124,10 +124,12 @@ kordeCms.controller('EditArticleCtrl',
             });
         };
 
-        $scope.deleteElement = function (element) {
+        $scope.deleteElement = function (element, index) {
             ArticleFactory.destroyElement(element).then(function (response) {
                 //Success
-                SweetAlert.swal({title: "Lagret", type: "success", showConfirmButton: false, timer: 1000});
+                SweetAlert.swal({title: "Slettet", type: "success", showConfirmButton: false, timer: 1000});
+                // Remove the element from the list in the DOM.
+                $scope.article.elements.splice(index, 1)
             }, function (response) {
                 //Error
                 SweetAlert.swal({

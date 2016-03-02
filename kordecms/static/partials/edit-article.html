@@ -38,7 +38,7 @@
             </text-angular>
             <img ng-if="!element.type" class="width-fill" ng-src="{{ element.image_url }}" alt="" ng-click="showEditButtons(element.id)" ng-blur="hideEditButtons(element.id)">
             <div ng-if="showButtonsFor == element.id">
-                <md-button class="md-primary" aria-label="delete element" ng-click="deleteElement(element)"><i class="fa fa-trash-o"></i></md-button>
+                <md-button class="md-primary" aria-label="delete element" ng-click="deleteElement(element, $index)"><i class="fa fa-trash-o"></i></md-button>
                 <md-button class="md-primary" aria-label="edit element" ng-if="element.type == 0"><i class="fa fa-pencil-square-o"></i></md-button>
                 <md-button class="md-primary" aria-label="update element" ng-click="updateElement(element)"><i class="fa fa-check"></i></md-button>
             </div>

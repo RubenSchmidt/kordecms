@@ -7,6 +7,7 @@ kordeCms.factory('PageFactory',
         var endpoint = apiUrl + '/pages';
         return ({
             get: get,
+            getChilderen: getChilderen,
             list: list,
             listElements: listElements,
             create: create,
@@ -17,6 +18,10 @@ kordeCms.factory('PageFactory',
 
         function get(pageslug) {
             return $http.get(endpoint + '/' + pageslug)
+        }
+
+        function getChilderen(page_id) {
+            return $http.get(endpoint + '/childeren/' + page_id);
         }
 
         function list() {

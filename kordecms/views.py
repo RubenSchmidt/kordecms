@@ -231,3 +231,20 @@ def article_count(request):
         'article_count_p': article_count_p,
         'article_count_u': article_count_u
     })
+
+@api_view(['GET'])
+def page_childeren(request, page_id):
+    """
+    Returns the childeren of a parent page
+    :param request:
+    """
+
+    serializer_class = PageSerializer
+
+    page = Page.objects.filter(id=page_id)
+    childeren = Page.objects.filter(parent_page=page)
+
+    # Must JSON serialize objects before the get returned
+    serializer = PageSerializer(childeren, many=True)
+
+    return Response(serializer.data)

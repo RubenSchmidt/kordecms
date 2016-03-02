@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^pages/(?P<slug>[-_\w]+)$', views.PageDetail.as_view(), name='page-detail'),
     url(r'^pages/(?P<slug>[-_\w]+)/elements$', views.get_page_elements_sorted, name='page-element-sorted'),
     url(r'^pageelements/(?P<pk>\d+)$', views.PageElementDetail.as_view(), name='page-element-detail'),
+    url(r'^pages/childeren/(?P<page_id>\d+)$', views.page_childeren, name='page-childeren'),
 
 
     url(r'^users$', views.UserList.as_view(), name='user-list'),

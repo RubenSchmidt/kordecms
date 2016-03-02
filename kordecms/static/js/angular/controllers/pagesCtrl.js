@@ -7,13 +7,7 @@ kordeCms.controller('PagesCtrl',
         PageFactory.list().then(function (response) {
             //Success
             $scope.pages = response.data;
-
-            $scope.pages.forEach(function(e) {
-                PageFactory.getChilderen(e.id).then(function success(response) {
-                    console.log(response);
-                });
-            });
-
+            
         }, function (response) {
             //Error
             $scope.error = response.data;

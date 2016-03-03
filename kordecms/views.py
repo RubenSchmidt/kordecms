@@ -5,7 +5,7 @@ from .serializers import ArticleSerializer, ArticleCommentSerializer, UserSerial
     PageElementSerializer, ArticleElementSerializer
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import permissions, generics, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import render
@@ -256,13 +256,12 @@ def article_count(request):
     })
 
 @api_view(['GET'])
+@permission_classes((permissions.AllowAny, ))
 def page_childeren(request, page_id):
     """
     Returns the childeren of a parent page
     :param request:
     """
-
-    serializer_class = PageSerializer
 
     page = Page.objects.filter(id=page_id)
     childeren = Page.objects.filter(parent_page=page)

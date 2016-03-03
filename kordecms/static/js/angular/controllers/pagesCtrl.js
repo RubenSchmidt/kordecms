@@ -7,7 +7,7 @@ kordeCms.controller('PagesCtrl',
         PageFactory.list().then(function (response) {
             //Success
             $scope.pages = response.data;
-            
+
         }, function (response) {
             //Error
             $scope.error = response.data;

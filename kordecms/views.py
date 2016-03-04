@@ -11,7 +11,6 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import render
 
 
-
 def index_view(request):
     return render(request, 'cmsadmin.html', {})
 
@@ -37,7 +36,7 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAdminUser
     ]
 
 
@@ -148,7 +147,6 @@ class ArticleMixin(object):
             serializer.save()
 
 
-
 class ArticleList(ArticleMixin, generics.ListCreateAPIView):
     def get_queryset(self):
         """
@@ -255,8 +253,9 @@ def article_count(request):
         'article_count_u': article_count_u
     })
 
+
 @api_view(['GET'])
-@permission_classes((permissions.AllowAny, ))
+@permission_classes((permissions.AllowAny,))
 def page_childeren(request, page_id):
     """
     Returns the childeren of a parent page

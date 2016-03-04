@@ -66,6 +66,19 @@ class Page(models.Model):
         upload_to='pagethumbnails/%Y/%m/%d/'
     )
 
+    seo_title = models.CharField(
+        verbose_name=_('SEO optimal title'),
+        max_length=256,
+        blank=True, null=True
+    )
+
+    @property
+    def display_title(self):
+        if self.seo_title:
+            return self.seo_title
+        else:
+            return self.name
+
     class Meta:
         verbose_name = _('Page')
 

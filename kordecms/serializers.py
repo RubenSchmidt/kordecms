@@ -15,10 +15,10 @@ class PageElementSerializer(serializers.ModelSerializer):
 
 class PageSerializer(serializers.ModelSerializer):
     elements = serializers.SerializerMethodField()
-    thumbnail_url = serializers.ReadOnlyField()
 
     class Meta:
         model = Page
+        fields = ('id', 'name', 'parent_page', 'slug', 'thumbnail', 'thumbnail_url', 'display_title', 'elements')
 
     def create(self, validated_data):
         """

@@ -4,8 +4,15 @@ from .models import Article, ArticleComment, Page, PageElement, ArticleElement
 
 # Register your models here.
 
+class PageElementInline(admin.TabularInline):
+    model = PageElement
+
+
 class PageAdmin(admin.ModelAdmin):
     model = Page
+    inlines = [
+        PageElementInline
+    ]
 
 
 class PageElementAdmin(admin.ModelAdmin):

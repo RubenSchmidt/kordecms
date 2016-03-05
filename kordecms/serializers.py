@@ -79,7 +79,7 @@ class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
         model = Article
         fields = (
             'id', 'title', 'author_name', 'body_text', 'thumbnail_image_url', 'created_at', 'tags', 'author',
-            'elements')
+            'elements', 'slug')
 
     def get_validation_exclusions(self):
 

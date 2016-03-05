@@ -155,7 +155,6 @@ class Article(KordeEditableModel):
     """
     Article model. Contains no paragraphs or images. Only Meta info about article
     """
-    # TODO use signals to notify the article model of the child elements on post_save to update last_updated
     title = models.TextField(
         blank=True,
         verbose_name=_('title'))
@@ -189,6 +188,12 @@ class Article(KordeEditableModel):
         verbose_name=_('article body text')
     )
 
+    slug = models.SlugField(
+        verbose_name=_('Slug'),
+        blank=True, null=True,
+        unique=True
+    )
+
     thumbnail_image_src = models.ImageField(
         verbose_name=_('article thumbnail image'),
         upload_to='cms/articlethumbnails/%Y/%m/%d/',
@@ -203,6 +208,16 @@ class Article(KordeEditableModel):
 
     def save(self, *args, **kwargs):
         self.author_name = self.author.get_full_name()
+
+        # If the article is new, create the slug
+        # Check for existing slug, and append a number to the slug if a slug already exists.
+        if not self.id:
+            slug_text = slugify(self.title)
+            count = Article.objects.filter(slug=slug_text).count()
+            if count > 0:
+                slug_text = "{}-{}".format(self.title, count)
+            self.slug = slugify(slug_text)
+
         super(Article, self).save(*args, **kwargs)  # Call the "real" save() method.
 
     @property

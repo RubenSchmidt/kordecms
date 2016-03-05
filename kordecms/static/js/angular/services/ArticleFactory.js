@@ -15,8 +15,8 @@ kordeCms.factory('ArticleFactory',
             destroy: destroy,
             count: count
         });
-        function get(id) {
-            return $http.get(endpoint + '/' + id)
+        function get(slug) {
+            return $http.get(endpoint + '/' + slug)
         }
 
         function list() {
@@ -39,10 +39,10 @@ kordeCms.factory('ArticleFactory',
 
         function update(article, file) {
             if (angular.isUndefined(file)) {
-                return $http.put(endpoint + '/' + article.id, article)
+                return $http.put(endpoint + '/' + article.slug, article)
             } else {
                 return Upload.upload({
-                    url: endpoint + '/' + article.id,
+                    url: endpoint + '/' + article.slug,
                     method: 'PUT',
                     data: article,
                     file: file
@@ -81,8 +81,8 @@ kordeCms.factory('ArticleFactory',
 
         }
 
-        function destroy(id) {
-            return $http.delete(endpoint + '/' + id)
+        function destroy(slug) {
+            return $http.delete(endpoint + '/' + slug)
         }
 
         function count() {

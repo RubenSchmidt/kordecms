@@ -15,7 +15,7 @@ kordeCms.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/static/partials/edit-article.html',
             isRestricted: true
         })
-        .when('/articles/:articleId', {
+        .when('/articles/:articleSlug', {
             controller: 'EditArticleCtrl',
             templateUrl: '/static/partials/edit-article.html',
             isRestricted: true

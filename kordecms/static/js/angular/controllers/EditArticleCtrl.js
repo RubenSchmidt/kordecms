@@ -12,12 +12,12 @@ kordeCms.controller('EditArticleCtrl',
         //Init empty elements list.
         $scope.isNew = true;
 
-        if (!$routeParams.articleId) {
+        if (!$routeParams.articleSlug) {
             //Create new article object
             $scope.isNew = true;
         } else {
             //Get existing article
-            ArticleFactory.get($routeParams.articleId).then(function (response) {
+            ArticleFactory.get($routeParams.articleSlug).then(function (response) {
                 //Success
                 $scope.article = response.data;
                 $scope.isNew = false;

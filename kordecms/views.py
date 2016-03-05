@@ -125,7 +125,7 @@ class ArticleMixin(object):
     model = Article
     queryset = Article.objects.all().order_by('-created_at')
     serializer_class = ArticleSerializer
-
+    lookup_field = 'slug'
     permission_classes = [
         ArticleAuthorCanEditPermission
     ]
@@ -173,7 +173,7 @@ class ArticleElementList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = super(ArticleElementList, self).get_queryset()
-        return queryset.filter(article_id=self.kwargs.get('pk'))
+        return queryset.filter(article_slug=self.kwargs.get('slug'))
 
     def perform_create(self, serializer):
         obj = serializer.validated_data

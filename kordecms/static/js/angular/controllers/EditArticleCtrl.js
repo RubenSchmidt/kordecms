@@ -208,10 +208,9 @@ kordeCms.controller('EditArticleCtrl',
             $scope.article.elements = [];
             ArticleFactory.create($scope.article, $scope.article.thumbnail_image_src).then(function (response) {
                 //Success, redirect to the article page
-                $location.path('/articles/' + response.data.id)
+                $location.path('/articles/' + response.data.slug)
             }, function (response) {
                 //error
-                console.log(response);
                 $scope.errors = response.data;
                 SweetAlert.swal({title: "Noe gikk galt!", type: "error", showConfirmButton: false, timer: 1000});
             });

@@ -181,6 +181,12 @@ class Article(KordeEditableModel):
     )
 
     is_published = models.BooleanField(
+        verbose_name=_('Is published'),
+        default=False
+    )
+
+    is_internal = models.BooleanField(
+        verbose_name=_('Is internal'),
         default=False
     )
 

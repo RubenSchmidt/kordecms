@@ -1,7 +1,7 @@
- <div layout="row" layout-wrap class="p-20-50">
+<div layout="row" layout-wrap class="p-20-50">
     <div flex="33" ng-repeat="article in articles">
         <md-card>
-            <div class="card-image h-200" style="background-image: url({{article.thumbnail_image_url}});"></div>
+            <div class="card-image h-200" style="background-image: url({{ article.thumbnail_image_url }});"></div>
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{ article.title }}</span>
@@ -9,10 +9,13 @@
             </md-card-title>
             <md-card-content>
                 <p ng-bind-html="article.body_text">
-                {{ article.body_text }}
+                    {{ article.body_text }}
                 </p>
             </md-card-content>
             <md-card-actions layout="row" class="color-dark" layout-align="end center">
+                <small ng-if="article.is_published">Publisert</small>
+                <small ng-if="!article.is_published">Ikke publisert</small>
+
                 <md-button class="md-icon-button" aria-label="Favorite">
                     <span class="fa fa-heart"></span>
                 </md-button>

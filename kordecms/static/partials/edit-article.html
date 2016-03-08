@@ -21,11 +21,20 @@
             Skrevet av: {{ article.author_name }}
         </div>
     </div>
+    <div class="row" layout="row">
+        <div flex>
+            <md-checkbox ng-model="article.is_published" aria-label="Checkbox 1">
+                Publisert
+            </md-checkbox>
+            <md-checkbox ng-model="article.is_internal" aria-label="Checkbox 2">
+                Intern nyhet
+            </md-checkbox>
+        </div>
+    </div>
     <div class="row">
         <div class="inline col-xs-12">
             <text-angular-toolbar name="toolbar"></text-angular-toolbar>
             <text-angular name="body_text" ng-model="article.body_text" ta-target-toolbars='toolbar'></text-angular>
-
         </div>
     </div>
     <div class="row">

@@ -159,6 +159,18 @@ class ArticleList(ArticleMixin, generics.ListCreateAPIView):
         return queryset
 
 
+class InternalArticleList(generics.ListAPIView):
+    """
+    View for articles intended for staff members only. Uses the IsAdminUser permission.
+    """
+    model = Article
+    queryset = Article.objects.filter(is_internal=True)
+    serializer_class = ArticleSerializer
+    permission_classes = [
+        permissions.IsAdminUser
+    ]
+
+
 class ArticleDetail(ArticleMixin, generics.RetrieveUpdateDestroyAPIView):
     pass
 

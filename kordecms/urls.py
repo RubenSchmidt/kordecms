@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^articles/(?P<slug>[-_\w]+)/elements$', views.ArticleElementList.as_view(), name='article-elements-list'),
     url(r'^articles/(?P<slug>[-_\w]+)/elements/(?P<elementId>\d+)$', views.ArticleElementDetail.as_view(), name='article-elements-detail'),
     url(r'^articles/count$', views.article_count, name='article-count'),
+    url(r'^articles/internal$', views.InternalArticleList.as_view(), name='article-internal-list'),
 
 
     url(r'^comments/(?P<pk>\d+)$', views.ArticleCommentDetail.as_view(), name='article-comment-detail'),

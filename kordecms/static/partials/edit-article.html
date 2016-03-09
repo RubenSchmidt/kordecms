@@ -4,13 +4,14 @@
         Endre bilde <span class="fa fa-pencil"></span>
     </div>
 </div>
+<div class="edit-article-cover h-400" style="background-image: url({{ article.thumbnail_image_src.$ngfBlobUrl }});"
+     ng-show="article.thumbnail_image_src">
+</div>
 <div class="w-800 block-center">
-    <div class="t-center" ng-show="article.thumbnail_image_src">
-        <img ngf-thumbnail="article.thumbnail_image_src" alt="">
-    </div>
+
     <div class="row m-10-0">
         <div class="t-center">
-            <input type="text" class="font-size-40 hidden-input t-center" ng-model="article.title">
+            <input type="text" placeholder="Tittel her" class="font-size-40 hidden-input t-center" ng-model="article.title">
         </div>
     </div>
     <div class="row p-0-20 t-center">
@@ -92,7 +93,9 @@
                 md-direction="left">
     <md-fab-trigger class="align-with-text">
         <md-button aria-label="menu" class="md-fab md-primary">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-plus"></i>
+            <md-tooltip md-direction="left">Legg til nytt element</md-tooltip>
+
         </md-button>
     </md-fab-trigger>
     <md-toolbar>

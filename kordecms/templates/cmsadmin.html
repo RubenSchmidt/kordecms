@@ -125,10 +125,10 @@
     </md-content>
 </md-sidenav>
 <div layout="column" tabindex="-1" role="main" flex class="layout-column flex" aria-hidden="false">
-    <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+    <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar" ng-controller="smallNavCtrl">
         <div layout="row" flex="" class="md-toolbar-tools">
             <h3>
-                <span>Articles</span>
+                <span ng-bind="breadcrumbs"></span>
             </h3>
         </div>
     </md-toolbar>
@@ -180,6 +180,7 @@
 <script src="{% static 'js/angular/controllers/NavbarCtrl.js' %}"></script>
 <script src="{% static 'js/angular/controllers/PageElementCtrl.js' %}"></script>
 <script src="{% static 'js/angular/controllers/UsersCtrl.js' %}"></script>
+<script src="{% static 'js/angular/controllers/smallNavCtrl.js' %}"></script>
 
 <!-- DIRECTIVES  -->
 <script src="{% static 'js/angular/directives/halloEditor.js' %}"></script>

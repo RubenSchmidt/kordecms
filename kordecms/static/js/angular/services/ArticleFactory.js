@@ -81,11 +81,11 @@ kordeCms.factory('ArticleFactory',
 
         }
 
-        function destroy(slug) {
-            return $http.delete(endpoint + '/' + slug)
+        function destroy(article) {
+            return $http.delete(endpoint + '/' + article.slug)
         }
 
         function count() {
-            return $http.get(endpoint + '/count')
+            return $http.get(endpoint + '/count/')
         }
     }]);

@@ -13,16 +13,17 @@
                 </p>
             </md-card-content>
             <md-card-actions layout="row" class="color-dark" layout-align="end center">
-                <small ng-if="article.is_published">Publisert</small>
-                <small ng-if="!article.is_published">Ikke publisert</small>
-
+                <small>{{ publishedText(article.is_published)}}</small>
                 <md-button class="md-icon-button" aria-label="Favorite">
+                    <md-tooltip>Favoriser</md-tooltip>
                     <span class="fa fa-heart"></span>
                 </md-button>
                 <md-button class="md-icon-button" ng-click="go(article.slug)" aria-label="Settings">
+                    <md-tooltip>Rediger</md-tooltip>
                     <span class="fa fa-pencil-square-o"></span>
                 </md-button>
-                <md-button class="md-icon-button" aria-label="Share">
+                <md-button class="md-icon-button" aria-label="Delete" ng-click="delete(article)">
+                    <md-tooltip>Slett</md-tooltip>
                     <span class="fa fa-trash-o"></span>
                 </md-button>
             </md-card-actions>

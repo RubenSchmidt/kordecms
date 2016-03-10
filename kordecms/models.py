@@ -83,6 +83,8 @@ class Page(models.Model):
         verbose_name = _('Page')
 
     def __str__(self):
+        if self.parent_page:
+            return '{}, {}'.format(self.parent_page.name, self.name)
         return self.name
 
     def save(self, *args, **kwargs):

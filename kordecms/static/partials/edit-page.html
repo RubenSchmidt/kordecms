@@ -2,18 +2,41 @@
     <div class="t-center t-very-thin m-20-0">
         <h1 class="page-header">{{ page.name }}</h1>
     </div>
-    <div class="p-20-0" ng-repeat="elementRow in pageElements">
-        <a href="#/pageelement/{{ element.id }}" ng-repeat="element in elementRow">
-            <div class="korde-content-box bg-light w-300 center-shadow m-0-20 h-200">
-                <div class="content-box-header bg-balanced color-light t-center t-upper">{{ element.description }}</div>
-                <div class="p-10-10 t-very-thin">
-                    <div class="content-box-image h-140" ng-style="{'background-image':'url({{element.image_url}})'}"
-                         ng-if="element.type == 0"></div>
-                    <div class="font-size-20" ng-bind-html="element.body" ng-if="element.type == 1">
-                        {{ element.body }}
+    <div flex class="p-20-0" ng-show="checkElements()">
+        <div>
+            <h2>Elements</h2>
+        </div>
+        <div class="p-20-0" ng-repeat="elementRow in pageElements">
+            <a href="#/pageelement/{{ element.id }}" ng-repeat="element in elementRow">
+                <div class="korde-content-box bg-light w-300 center-shadow m-0-20 h-200">
+                    <div class="content-box-header bg-balanced color-light t-center t-upper">{{ element.description }}</div>
+                    <div class="p-10-10 t-very-thin">
+                        <div class="content-box-image h-140"
+                             ng-style="{'background-image':'url({{ element.image_url }})'}"
+                             ng-if="element.type == 0"></div>
+                        <div class="font-size-20" ng-bind-html="element.body" ng-if="element.type == 1">
+                            {{ element.body }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
+    </div>
+
+    <div flex class=" p-20-0" ng-show="checkChildren()">
+        <div>
+            <h2>Sub-pages</h2>
+        </div>
+        <div flex class="thumbnails-box">
+            <a ng-href="#/pages/{{ page.slug }}" ng-repeat="page in page.children">
+                <div class="korde-content-box bg-light w-300 center-shadow m-20-20">
+                    <div class="content-box-header bg-positive color-light t-center t-upper">{{ page.name }}</div>
+                    <div class="p-10-10 font-size-30 color-dark t-right">
+                        <div class="content-box-image h-200"
+                             style="background-image: url({{ page.thumbnail_url }});"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>

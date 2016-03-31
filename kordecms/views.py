@@ -48,6 +48,15 @@ class PageList(generics.ListCreateAPIView):
         IsAdminOrReadOnly
     ]
 
+    def get_queryset(self):
+        queryset = Page.objects.all()
+        parents_only = self.request.query_params.get('parent_page', None)
+        if parents_only:
+            # Only return the parent pages, that means the pages without a parent_page
+            queryset = Page.objects.filter(parent_page=None)
+
+        return queryset
+
 
 class PageDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Page

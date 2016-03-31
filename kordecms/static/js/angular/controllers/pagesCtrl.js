@@ -4,7 +4,7 @@
 
 kordeCms.controller('PagesCtrl',
     ['$scope', 'PageFactory', 'ArticleFactory', 'UserFactory', function ($scope, PageFactory, ArticleFactory, UserFactory) {
-        PageFactory.list().then(function (response) {
+        PageFactory.list('parent_page=True').then(function (response) {
             //Success
             $scope.pages = response.data;
 

@@ -9,15 +9,27 @@ kordeCms.controller('EditPageCtrl',
         PageFactory.get($routeParams.pageSlug).then(function (response) {
             //Success
             $scope.page = response.data;
-            PageFactory.listElements($scope.page.slug).then(function (response) {
+            $scope.pageElements = $scope.page.elements;
+
+            PageFactory.getChilderen($scope.page.id).then(function(response){
                 //Success
-                $scope.pageElements = response.data;
-            }, function (response) {
+                $scope.page.children = response.data;
+            }, function(response){
                 //Error
-                $scope.error = response.data;
-            })
+
+            });
+
         }, function (response) {
             //Error
             $scope.error = response.data;
         });
+
+        $scope.checkChildren = function () {
+            return $scope.page.children.length > 0;
+        };
+
+        $scope.checkElements = function () {
+            return $scope.pageElements.length >0;
+        }
+
     }]);

@@ -24,8 +24,8 @@ kordeCms.factory('PageFactory',
             return $http.get(endpoint + '/childeren/' + page_id);
         }
 
-        function list() {
-            return $http.get(endpoint)
+        function list(filter) {
+            return $http.get(endpoint+'?'+filter)
         }
 
         function listElements(pageslug) {

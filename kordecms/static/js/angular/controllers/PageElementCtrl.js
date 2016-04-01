@@ -26,16 +26,16 @@ kordeCms.controller('PageElementCtrl',
                     console.log(response);
                 })
             }
-        }
+        };
 
         $scope.setFile = function(file) {
             $scope.file = file;
-        }
+        };
 
         // Function that checks the type of element
         $scope.checkType = function (check, answer) {
             return check === answer
-        }
+        };
 
         var upload = function (file) {
             $scope.element.image_src = file;

@@ -2,7 +2,7 @@
  * Created by rubenschmidt on 24.02.2016.
  */
 kordeCms.controller('PageElementCtrl',
-    ['$scope', '$routeParams', 'GlobalEditorService', 'PageElementFactory', 'SweetAlert', function ($scope, $routeParams, GlobalEditorService, PageElementFactory, SweetAlert) {
+    ['$scope', '$routeParams', '$window' ,'GlobalEditorService', 'PageElementFactory', 'SweetAlert', function ($scope, $routeParams, $window ,GlobalEditorService, PageElementFactory, SweetAlert) {
         $scope.editorMode = true;
 
         PageElementFactory.get($routeParams.id).then(function (response) {
@@ -50,4 +50,8 @@ kordeCms.controller('PageElementCtrl',
                 console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             });
         };
+
+        $scope.goBack = function () {
+            $window.history.back();
+        }
     }]);

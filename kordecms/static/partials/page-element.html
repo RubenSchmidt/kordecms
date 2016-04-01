@@ -9,10 +9,10 @@
             </div>
             <div class="image-drop-area" ngf-drop="setFile($file)">
                 <div class="upload-button" ngf-select="setFile($file)">
-                    <p>Last opp bilde</p>
+                    <p>Upload picture</p>
                 </div>
                 <h4 class="upload-text">
-                    eller dra inn og slipp et bilde her
+                    Or drag and drop a picture here...
                 </h4>
 
             </div>
@@ -25,9 +25,9 @@
         </div>
 
         <div class="p-20-0 w-600 block-center t-center">
-            <button class="button-no-bg-confirm m-10-20 w-250" ng-click="updateElement(file)">Lagre</button>
+            <button class="button-no-bg-confirm m-10-20 w-250" ng-click="updateElement(file)">Save</button>
             <a ng-href="#/pages">
-                <button class="button-no-bg-decline m-10-20 w-250">Tilbake</button>
+                <button class="button-no-bg-decline m-10-20 w-250" ng-click="goBack()">Tilbake</button>
             </a>
         </div>
     </div>

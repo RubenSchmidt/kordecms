@@ -27,16 +27,13 @@
         <div>
             <h2>Sub-pages</h2>
         </div>
-        <div flex class="thumbnails-box">
-            <a ng-href="#/pages/{{ page.slug }}" ng-repeat="page in page.children">
-                <div class="korde-content-box bg-light w-300 center-shadow m-20-20">
-                    <div class="content-box-header bg-positive color-light t-center t-upper">{{ page.name }}</div>
-                    <div class="p-10-10 font-size-30 color-dark t-right">
-                        <div class="content-box-image h-200"
-                             style="background-image: url({{ page.thumbnail_url }});"></div>
-                    </div>
+        <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="page in page.children" ng-click="go(page.slug)">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ page.name }}</h3>
+                    <p>Elements: {{ page.elements.length }} Sub-pages: {{ page.subPageCount }} </p>
                 </div>
-            </a>
-        </div>
+            </md-list-item>
+        </md-list>
     </div>
 </div>

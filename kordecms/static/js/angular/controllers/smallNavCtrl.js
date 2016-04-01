@@ -6,10 +6,24 @@ kordeCms.controller('smallNavCtrl',
         $scope.breadcrumbs = '';
         //Watch the route change, if we are at different page than login, show the navbar.
         $scope.$on('$routeChangeStart', function () {
-            //Remove first /
-            var cleanPath = $location.path().substring(1);
-            // Capitalize first letter.
-            var capitalized = cleanPath.charAt(0).toUpperCase() + cleanPath.slice(1);
-            $scope.breadcrumbs = capitalized.replace('/', '>');
+            var tempList = $location.path().split('/');
+            var pathList = [];
+            tempList.forEach(function (n) {
+                // Clean the array for emptry strings.
+                if (n) {
+                    pathList.push(n)
+                }
+            });
+            var outString = '';
+            pathList.forEach(function (path, idx, array) {
+                // Capitalize the word
+                var cap = path.charAt(0).toUpperCase() + path.slice(1);
+                if (idx !== array.length - 1) {
+                    cap = cap + '>';
+                }
+                outString += cap;
+            });
+
+            $scope.breadcrumbs = outString;
         });
     }]);

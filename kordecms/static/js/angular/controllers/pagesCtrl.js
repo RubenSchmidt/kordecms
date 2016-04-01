@@ -3,28 +3,31 @@
  */
 
 kordeCms.controller('PagesCtrl',
-    ['$scope', 'PageFactory', 'ArticleFactory', 'UserFactory', function ($scope, PageFactory, ArticleFactory, UserFactory) {
+    ['$scope', '$location' ,'PageFactory', 'ArticleFactory', 'UserFactory', function ($scope, $location ,PageFactory, ArticleFactory, UserFactory) {
         PageFactory.list('parent_page=True').then(function (response) {
             //Success
             $scope.pages = response.data;
 
+            $scope.pages.forEach(function (page) {
+                subPageCount(page);
+            })
+
         }, function (response) {
             //Error
             $scope.error = response.data;
-        })
+        });
 
-        var imagePath = 'img/list/60.jpeg';
-          $scope.todos = [];
-          for (var i = 0; i < 15; i++) {
-            $scope.todos.push({
-              face: imagePath,
-              what: "Brunch this weekend?",
-              who: "Min Li Chan",
-              notes: "I'll be in your neighborhood doing errands."
+        function subPageCount (page) {
+            PageFactory.getChilderen(page.id).then(function(response){
+                //Success
+                page.subPageCount = response.data.length;
+
+            }, function(response){
+                //Error
+                page.subPageCount = 0;
             });
-          }
+        }
+        $scope.go = function (slug) {
+            $location.path('/pages/' + slug);
+        };
     }]);
-
-kordeCms.controller('TitleController', function($scope) {
-  $scope.title = 'My App Title';
-});

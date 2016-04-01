@@ -234,4 +234,9 @@ kordeCms.controller('EditArticleCtrl',
                 $scope.showButtonsFor = null;
             }, 500, true, elementId);
         }
+
+        $scope.go = function (path) {
+            $location.path(path);
+        }
+
     }]);

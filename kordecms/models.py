@@ -134,7 +134,8 @@ class PageElement(KordeEditableModel):
         blank=True, null=True,
         upload_to='cms/pageelements/%Y/%m/%d/')
 
-    description = models.TextField(
+    description = models.CharField(
+        max_length=256,
         blank=True,
         verbose_name=_('Element description')
     )

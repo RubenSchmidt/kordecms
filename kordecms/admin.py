@@ -4,8 +4,9 @@ from .models import Article, ArticleComment, Page, PageElement, ArticleElement
 
 # Register your models here.
 
-class PageElementInline(admin.TabularInline):
+class PageElementInline(admin.StackedInline):
     model = PageElement
+    exclude = ('class_type', )
 
 
 class PageAdmin(admin.ModelAdmin):

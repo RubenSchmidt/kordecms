@@ -9,6 +9,9 @@ from .models import Article, ArticleComment, Page, PageElement, ArticleElement
 class PageElementInline(admin.StackedInline):
     model = PageElement
     exclude = ('class_type', )
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget()},
+    }
 
 
 class PageAdmin(admin.ModelAdmin):
@@ -27,10 +30,16 @@ class PageElementAdmin(admin.ModelAdmin):
 
 class ArticleCommentInline(admin.TabularInline):
     model = ArticleComment
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget()},
+    }
 
 
 class ArticleElementInline(admin.TabularInline):
     model = ArticleElement
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget()},
+    }
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -38,6 +47,9 @@ class ArticleAdmin(admin.ModelAdmin):
         ArticleCommentInline,
         ArticleElementInline
     ]
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget()},
+    }
 
 
 class ArticleElementAdmin(admin.ModelAdmin):

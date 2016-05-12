@@ -30,7 +30,6 @@ class PageElementAdmin(admin.ModelAdmin):
 
 class ArticleCommentInline(admin.TabularInline):
     model = ArticleComment
-    fields = ('text', )
 
 
 class ArticleElementInline(admin.TabularInline):

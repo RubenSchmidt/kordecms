@@ -157,7 +157,8 @@ class Article(KordeEditableModel):
     """
     Article model. Contains no paragraphs or images. Only Meta info about article
     """
-    title = models.TextField(
+    title = models.CharField(
+        max_length=256,
         blank=True,
         verbose_name=_('title'))
 
@@ -167,7 +168,8 @@ class Article(KordeEditableModel):
         null=True,
         verbose_name=_('author'))
 
-    author_name = models.TextField(
+    author_name = models.CharField(
+        max_length=256,
         blank=True,
         verbose_name=_('author name'))
 

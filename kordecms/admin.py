@@ -30,9 +30,7 @@ class PageElementAdmin(admin.ModelAdmin):
 
 class ArticleCommentInline(admin.TabularInline):
     model = ArticleComment
-    formfield_overrides = {
-        models.TextField: {'widget': CKEditorWidget()},
-    }
+    fields = ('text', )
 
 
 class ArticleElementInline(admin.TabularInline):
@@ -44,8 +42,8 @@ class ArticleElementInline(admin.TabularInline):
 
 class ArticleAdmin(admin.ModelAdmin):
     inlines = [
-        ArticleCommentInline,
-        ArticleElementInline
+        ArticleElementInline,
+        ArticleCommentInline
     ]
     formfield_overrides = {
         models.TextField: {'widget': CKEditorWidget()},

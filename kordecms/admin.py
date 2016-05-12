@@ -23,7 +23,7 @@ class PageAdmin(admin.ModelAdmin):
 
 class PageElementAdmin(admin.ModelAdmin):
     model = PageElement
-    list_filter = ('page')
+    list_filter = ('page', )
     formfield_overrides = {
         models.TextField: {'widget': CKEditorWidget()},
     }

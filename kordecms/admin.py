@@ -1,4 +1,6 @@
+from ckeditor.widgets import CKEditorWidget
 from django.contrib import admin
+from django.db import models
 from .models import Article, ArticleComment, Page, PageElement, ArticleElement
 
 
@@ -18,6 +20,9 @@ class PageAdmin(admin.ModelAdmin):
 
 class PageElementAdmin(admin.ModelAdmin):
     model = PageElement
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget()},
+    }
 
 
 class ArticleCommentInline(admin.TabularInline):

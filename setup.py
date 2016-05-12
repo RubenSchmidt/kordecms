@@ -16,6 +16,7 @@ setup(
           'djangorestframework',
           'djangorestframework-jwt',
           'Pillow',
+          'django-ckeditor'
       ],
     include_package_data=True,
     license='',  # example license

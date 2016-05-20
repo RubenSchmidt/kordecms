@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from django.http import Http404
+
 from .models import Page, Article, ArticleComment, PageElement, ArticleElement
 from .permissions import ArticleAuthorCanEditPermission, IsAdminOrReadOnly
 from .serializers import ArticleSerializer, ArticleCommentSerializer, UserSerializer, PageSerializer, \
@@ -282,11 +284,14 @@ def page_childeren(request, page_id):
     Returns the childeren of a parent page
     :param request:
     """
+    try:
+        page = Page.objects.get(id=page_id)
+    except Page.DoesNotExist:
+        raise Http404
 
-    page = Page.objects.filter(id=page_id)
-    childeren = Page.objects.filter(parent_page=page)
+    children = Page.objects.filter(parent_page=page)
 
     # Must JSON serialize objects before the get returned
-    serializer = PageSerializer(childeren, many=True)
+    serializer = PageSerializer(children, many=True)
 
     return Response(serializer.data)

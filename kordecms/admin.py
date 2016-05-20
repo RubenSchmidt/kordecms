@@ -15,6 +15,9 @@ class PageElementInline(admin.StackedInline):
 
 
 class PageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parentpage', 'slug', '__str__')
+    list_filter = ('name', 'parentpage')
+    search_fields = ('name', 'slug')
     model = Page
     inlines = [
         PageElementInline
